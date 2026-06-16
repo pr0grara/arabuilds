@@ -4,8 +4,10 @@
   "private": true,
   "description": "arabuilds — lead generation systems for local business",
   "scripts": {
-    "deploy": "wrangler pages deploy . --project-name=arabuilds",
-    "dev": "python3 -m http.server 8000"
+    "deploy": "wrangler pages deploy",
+    "dev": "wrangler pages dev",
+    "db:init": "wrangler d1 execute arabuilds-intake --file=./schema.sql --remote",
+    "db:init:local": "wrangler d1 execute arabuilds-intake --file=./schema.sql --local"
   },
   "devDependencies": {
     "wrangler": "^3"
