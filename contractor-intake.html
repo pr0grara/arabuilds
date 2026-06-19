@@ -3,25 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Contractor Growth Intake — arabuilds</title>
-<meta name="description" content="Tell AraBuilds about your trade business — your stage, services, service area, current leads, and bottlenecks — so we can identify the highest-leverage next step for your growth.">
+<title>Tradesman Intake — AraBuilds</title>
+<meta name="description" content="Tell me where your trade business is today — your stage, services, service area, current leads, and what's holding you back — and I'll find your first move.">
 <meta name="theme-color" content="#0b0c0a">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://arabuilds.com/contractor-intake">
-<meta property="og:title" content="Contractor Growth Intake — arabuilds">
-<meta property="og:description" content="A practical intake for skilled tradesmen and contractors. Tell us where your business is today and what jobs you want more of.">
+<meta property="og:title" content="Tradesman Intake — AraBuilds">
+<meta property="og:description" content="Tell me where you're at and what kind of jobs you want more of. I'll tell you the first move.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230b0c0a'/><text x='50' y='72' font-size='70' text-anchor='middle' fill='%2362e36b' font-family='monospace'>%3E</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='%231b2a47'/><text x='50' y='73' font-size='66' text-anchor='middle' fill='%232f7d52' font-family='Arial,sans-serif' font-weight='bold'>A</text></svg>">
+<script>(function(){try{var t=localStorage.getItem('theme')==='light'?'light':'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 <style>
   :root{
-    --bg:#0b0c0a;
-    --fg:#d7dccf;
-    --dim:#6b7264;
-    --accent:#62e36b;
-    --line:#1c1f1a;
-    --field:#101210;
-    --field-line:#2a2e26;
-    --warn:#e3a062;
+    --bg:#ffffff;
+    --fg:#1a1d23;
+    --dim:#616a76;
+    --accent:#2f7d52;
+    --line:#e6e5dd;
+    --field:#ffffff;
+    --field-line:#d4d3c9;
+    --warn:#a85d18;
     --mono:"SF Mono",ui-monospace,"JetBrains Mono","Cascadia Code",Menlo,Consolas,monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -35,7 +36,6 @@
     -webkit-font-smoothing:antialiased;
     padding:clamp(20px,5vw,48px);
     min-height:100vh;
-    background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
   }
   ::selection{background:var(--accent);color:var(--bg)}
   a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--line);transition:border-color .15s,color .15s}
@@ -100,7 +100,7 @@
   .opt{display:flex;align-items:flex-start;gap:9px;padding:9px 11px;border:1px solid var(--field-line);background:var(--field);border-radius:2px;cursor:pointer;line-height:1.4;font-size:13.5px;transition:border-color .15s,background .15s}
   .opt:hover{border-color:var(--dim)}
   .opt input{width:auto;margin:0;flex:0 0 auto;accent-color:var(--accent);transform:translateY(2px)}
-  .opt:has(input:checked){border-color:var(--accent);background:rgba(98,227,107,.06)}
+  .opt:has(input:checked){border-color:var(--accent);background:rgba(47,125,82,.07)}
 
   .actions{border-top:1px solid var(--line);padding-top:30px;margin-top:4px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
   .submit{font-family:var(--mono);font-size:15px;display:inline-flex;align-items:center;gap:10px;border:1px solid var(--accent);color:var(--accent);background:transparent;padding:14px 22px;border-radius:2px;cursor:pointer;transition:background .15s,color .15s}
@@ -121,16 +121,18 @@
   footer nav a{color:var(--dim);border:none}
   footer nav a:hover{color:var(--accent)}
 </style>
+<link rel="stylesheet" href="/assets/theme.css">
+<script src="/assets/theme.js" defer></script>
 </head>
 <body>
 <main class="wrap">
 
-  <a class="back" href="/">← ara@builds:~$ cd ..</a>
+  <a class="back" href="/">← arabuilds</a>
 
   <header>
-    <div class="prompt">ara@builds:~$ <b>./intake --trade</b></div>
-    <h1 class="brand">Contractor Growth<span class="accent"> Intake</span></h1>
-    <p class="intro">This intake helps AraBuilds understand where your business is today, what kind of jobs you want more of, and what bottlenecks are holding you back. <span class="dim">The goal is not to sell you a generic website package — it is to identify the highest-leverage next step for your trade business.</span></p>
+    <!-- <div class="prompt">ara@builds:~$ <b>./intake --trade</b></div> -->
+    <h1 class="brand">Tradesman<span class="accent"> Intake</span></h1>
+    <p class="intro">This intake helps me understand where you are today, what kind of jobs you want more of, and what is holding you back. <span class="dim">The goal is to find our "first actions", then lowest hanging fruit and finally carve out your long term plan.</span></p>
 
     <div class="process">
       <div class="label">how arabuilds works</div>

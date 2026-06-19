@@ -1,0 +1,54 @@
+/* Theme system.
+   LIGHT is the default — each page defines its own light palette in :root.
+   This file adds the optional DARK theme (white-ish text on near-black, with the
+   brighter "dev" green) plus the toggle button. Loaded after each page's <style>.
+
+   Two variable naming schemes exist across the site, so dark overrides both:
+   - homepage:           --paper --panel --ink --navy --muted --line --line-2 --accent --accent-dk
+   - intake/work/etc.:   --bg --fg --dim --line --accent --field --field-line --warn --panel --chrome */
+
+:root[data-theme="dark"]{
+  /* bg/fg scheme */
+  --bg:#0b0c0a;
+  --fg:#d7dccf;
+  --dim:#7c8473;
+  --accent:#62e36b;        /* brighter dev green */
+  --line:#1f221c;
+  --field:#101210;
+  --field-line:#2a2e26;
+  --warn:#e3a062;
+  --panel:#0e100d;
+  --chrome:#121410;
+  /* homepage scheme */
+  --paper:#0b0c0a;
+  --ink:#d7dccf;
+  --navy:#eaeef5;          /* headlines go light in dark */
+  --muted:#7c8473;
+  --line-2:#2a2e26;
+  --accent-dk:#7af084;
+}
+
+/* Toggle button — bottom-right so it clears the back link (top-left) and the
+   homepage intake link (top-right). Self-contained colors so it works on every
+   page regardless of which variable scheme that page uses. */
+.theme-toggle{
+  position:fixed;
+  bottom:clamp(14px,3vw,22px);
+  right:clamp(14px,3vw,22px);
+  z-index:60;
+  font-family:"SF Mono",ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+  font-size:12px;
+  line-height:1;
+  padding:8px 12px;
+  border-radius:6px;
+  cursor:pointer;
+  color:#616a76;
+  background:#ffffff;
+  border:1px solid #d4d3c9;
+  transition:color .15s,border-color .15s,background .15s;
+}
+.theme-toggle:hover{ color:#2f7d52; border-color:#2f7d52; }
+:root[data-theme="dark"] .theme-toggle{ color:#f4f6f1; background:#101210; border-color:#aab0a1; }
+:root[data-theme="dark"] .theme-toggle:hover{ color:#62e36b; border-color:#62e36b; }
+.theme-toggle:focus-visible{ outline:2px solid currentColor; outline-offset:2px; }
+@media print{ .theme-toggle{ display:none; } }

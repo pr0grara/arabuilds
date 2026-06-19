@@ -5,7 +5,8 @@
   "description": "arabuilds — lead generation systems for local business",
   "scripts": {
     "deploy": "wrangler pages deploy",
-    "dev": "wrangler pages dev",
+    "dev": "python3 dev-server.py",
+    "dev:cf": "wrangler pages dev",
     "db:init": "wrangler d1 execute arabuilds-intake --file=./schema.sql --remote",
     "db:init:local": "wrangler d1 execute arabuilds-intake --file=./schema.sql --local"
   },
