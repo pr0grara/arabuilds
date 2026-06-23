@@ -1,0 +1,43 @@
+# Client — Auguste Vende · All East Bay Properties
+
+> **Private.** Excluded from public serving via `.assetsignore` (the `clients` entry). Do not move out of this folder.
+
+## Who
+- **Name:** Auguste Vende — Broker of Record, **All East Bay Properties**
+- **License:** Auguste DRE#02090399 · brokerage DRE#01516255
+- **Office:** 2324 Powell Street, Emeryville, CA 94608
+- **Contact:** (510) 421-6994 · auguste@alleastbay.com
+- **Current site:** https://www.auguste-realtor.com/ (Wix, 5 pages)
+- **Works solo.** Also handles property management; welcomes PM leads.
+
+## The play (one line)
+Reposition him as **the Emeryville condo specialist**, prove it with his ~60 sold deals + a Recently Sold showcase, add live IDX search, and capture seller/buyer leads — keeping his brand, domain, and the paid funnel that already works.
+
+## Niche / geography (his priority order)
+1. **Condos in Emeryville** — primary, the hero of the whole site
+2. Condos in **neighboring cities** — secondary
+3. **Small multifamily** in the same region — secondary (just sold an 8-unit & 12-unit via the PM company)
+- **Exclude East Oakland.**
+
+## Status
+- [x] Current site + SEO audited
+- [x] Discovery call complete (answers in [discovery-notes.md](discovery-notes.md))
+- [x] Open items resolved (see below)
+- [x] Branded proposal page built → `functions/auguste.js`, live at `arabuilds.com/auguste` (password: `eastbay`) once deployed
+- [ ] Deploy `/auguste` and send him the link
+- [ ] Collect assets from his Google Drive (bio, photos, ~60 sold properties, reviews, MLS login)
+- [ ] Pick IDX vendor, confirm exact price
+- [ ] Build the real site on auguste-realtor.com
+
+## Open items — resolved
+1. **IDX price:** give him a ballpark — **~$50–110/mo** vendor fee on top of MLS (iHomeFinder / IDX Broker / Showcase IDX class).
+2. **Recently Sold source:** **both** — curated gallery of his ~60 + IDX-pulled MLS sold.
+3. **Engagement:** **monthly = yes** (he agreed to ongoing SEO updates).
+4. **LSAs:** keeps the ads running for now.
+
+## Engagement
+**Build + ongoing monthly** — he's on board with monthly site updates for SEO.
+
+## Deliverable
+- Proposal page: [`functions/auguste.js`](../../functions/auguste.js) — gated plan at `/auguste`, modeled on the pili.js pattern. Internal orange block (call recap + open items) is stripped before sending.
+- Plan file (this engagement's planning doc): `~/.claude/plans/i-have-a-real-hazy-ullman.md`

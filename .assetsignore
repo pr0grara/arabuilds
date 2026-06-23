@@ -1,6 +1,7 @@
 node_modules
 .git
 .wrangler
+clients
 schema.sql
 dev-server.py
 ARCHIVED_TERMINAL_index.html

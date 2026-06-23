@@ -5,6 +5,11 @@
 const PASSWORD = 'eastbay'; // dead simple, on-theme. Change here anytime.
 const COOKIE = 'auguste_ok=1';
 
+// Where the "Send it over" CTA points. Default is email; if we set up a shared
+// Google Drive folder for his assets, paste the folder link here instead.
+const INTAKE_LINK = 'mailto:azbaghda@gmail.com?subject=' +
+  encodeURIComponent('Auguste — site assets for AraBuilds');
+
 export async function onRequest(context) {
   const { request } = context;
   const cookie = request.headers.get('Cookie') || '';
@@ -127,33 +132,6 @@ function head(title) {
   .cta.ghost:hover{border-color:var(--accent);color:var(--accent)}
 
   footer{border-top:1px solid var(--line);padding-top:24px;margin-top:8px;color:var(--muted);font-size:12.5px;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
-
-  /* internal call-prep block — temporary, removed before sending to Auguste */
-  .cp{border:1.5px dashed #c8912f;border-radius:10px;padding:clamp(18px,3vw,26px);margin-bottom:18px;background:rgba(200,145,47,.06)}
-  .cp-flag{font-family:var(--mono);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#b5751c;font-weight:700;margin-bottom:14px}
-  .cp h2{font-size:clamp(20px,3.4vw,26px);color:var(--navy);letter-spacing:-.4px;margin:0 0 4px}
-  .cp .cp-sub{color:var(--muted);font-size:14px;margin-bottom:14px;max-width:66ch}
-  .cp h3{font-family:var(--mono);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#b5751c;margin:22px 0 10px}
-  .cp .q{margin:0 0 13px}
-  .cp .q .t{font-weight:700;color:var(--navy);font-size:15px}
-  .cp .q .ask,.cp .q .why{display:block;font-size:13.5px;margin-top:3px;line-height:1.5}
-  .cp .q .ask{color:var(--ink)}
-  .cp .q .why{color:var(--muted)}
-  .cp .q b{color:var(--navy)}
-  .cp ul{list-style:none;display:grid;gap:9px;margin-top:4px}
-  .cp ul li{position:relative;padding-left:18px;font-size:13.5px;color:var(--ink);line-height:1.5}
-  .cp ul li::before{content:"›";position:absolute;left:2px;color:#b5751c;font-weight:700}
-  .cp ul li b{color:var(--navy)}
-  .cp .mind{margin-top:18px;border-left:3px solid #c8912f;padding:10px 14px;background:rgba(200,145,47,.07);color:var(--ink);font-size:14px}
-  .cp-divider{display:flex;align-items:center;gap:14px;margin:6px 0 30px;color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase}
-  .cp-divider::before,.cp-divider::after{content:"";flex:1;height:1px;background:var(--line-2)}
-  .cp-field{display:block;width:100%;margin-top:8px;font-family:var(--mono);font-size:13.5px;line-height:1.5;color:var(--ink);background:var(--panel);border:1px solid var(--line-2);border-radius:6px;padding:9px 11px;resize:vertical;min-height:42px}
-  .cp-field:focus{outline:none;border-color:#c8912f;box-shadow:0 0 0 1px #c8912f}
-  .cp-field::placeholder{color:var(--muted);opacity:.65}
-  .cp-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:2px 0 22px}
-  .cp-btn{font-family:var(--mono);font-size:12px;font-weight:700;color:#b5751c;background:rgba(200,145,47,.1);border:1px solid #c8912f;border-radius:6px;padding:8px 14px;cursor:pointer}
-  .cp-btn:hover{background:#c8912f;color:#fff}
-  .cp-note{font-family:var(--mono);font-size:11px;color:var(--muted)}
 </style>
 <link rel="stylesheet" href="/assets/theme.css">
 <script src="/assets/theme.js" defer></script>
@@ -175,145 +153,21 @@ function gate(error) {
   </div>` + foot;
 }
 
-function callGuide() {
-  return `
-  <div class="cp">
-    <div class="cp-flag">⚠ Internal · call prep — not part of Auguste's plan · remove before sending</div>
-    <h2>Call prep — sit-down with Auguste</h2>
-    <p class="cp-sub">The plan below makes some assumptions about where his business actually comes from and where he wants to take it. These are the spots to pull out of him. Don't leave without buyers-vs-sellers, where his deals really come from, and the money. Let him talk ~70%.</p>
-
-    <div class="cp-tools">
-      <button type="button" class="cp-btn" id="cpCopy">Copy answers</button>
-      <button type="button" class="cp-btn" id="cpClear">Clear</button>
-      <span class="cp-note">saved in this browser as you type</span>
-    </div>
-
-    <h3>The four that change the plan</h3>
-    <div class="q">
-      <span class="t">1. Buyers or sellers — where's the money and where does he want volume?</span>
-      <span class="ask"><b>Ask:</b> Of your deals, what's the split buyers vs sellers? Which is better money and less headache? If you could fill your calendar with one, which?</span>
-      <span class="why"><b>Why:</b> Decides what the site leads with — a "what's my home worth?" seller tool, or buyer listing-alerts. We can do both, but one has to be the hero CTA.</span>
-      <textarea class="cp-field" data-k="q1" data-q="1. Buyers vs sellers" rows="1" placeholder="Type Auguste's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">2. Where does business come from <em>today</em>?</span>
-      <span class="ask"><b>Ask:</b> Referrals? Paying for Zillow leads (how much)? Repeat clients? Are you converting any of the brokerage's 500+ rental tenants into buyers? Roughly what % from each?</span>
-      <span class="why"><b>Why:</b> Tells us whether we're replacing paid Zillow spend, amplifying referrals, or tapping the rental book. Changes the whole first move and how fast it pays for itself.</span>
-      <textarea class="cp-field" data-k="q2" data-q="2. Where business comes from today" rows="1" placeholder="Type Auguste's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">3. The money</span>
-      <span class="ask"><b>Ask:</b> Roughly how many deals a year now? Average commission? What are you spending on leads/marketing today? What could you put toward this monthly?</span>
-      <span class="why"><b>Why:</b> No baseline yet. Right-sizes the build and tells us if even 2–3 extra deals a year makes the whole thing a no-brainer.</span>
-      <textarea class="cp-field" data-k="q3" data-q="3. The money" rows="1" placeholder="Type Auguste's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">4. Geographic reality — where do the deals actually come from?</span>
-      <span class="ask"><b>Ask:</b> Which cities/neighborhoods have your best, most profitable deals come from? Oakland/Berkeley/Emeryville, or wider? Anywhere you want to break into?</span>
-      <span class="why"><b>Why:</b> Sets which city pages we build first. Better to own 3 cities he actually works than spread thin across 10 he doesn't.</span>
-      <textarea class="cp-field" data-k="q4" data-q="4. Geographic reality" rows="1" placeholder="Type Auguste's answer…"></textarea>
-    </div>
-
-    <h3>Deeper — sharpen it</h3>
-    <div class="q">
-      <span class="t">MLS + IDX appetite</span>
-      <span class="why">Is he active on the MLS? Would he pay a monthly vendor later so buyers can search live listings right on his site (that's "IDX")? Don't oversell it — it's a phase-3 maybe, not a launch need.</span>
-      <textarea class="cp-field" data-k="d1" data-q="MLS / IDX appetite" rows="1" placeholder="Type Auguste's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">Engagement shape — build-once or ongoing?</span>
-      <span class="why">Does he want a site handed off, or me running Google/reviews/SEO/leads monthly? SEO and reviews are the part that compounds — gauge his appetite for ongoing.</span>
-      <textarea class="cp-field" data-k="d2" data-q="Engagement (build-once vs ongoing)" rows="1" placeholder="Type Auguste's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">Reviews + reputation — what's real and reachable?</span>
-      <span class="why">He has Zillow + Experience reviews. Can he funnel happy clients to Google? How many past clients could he ask this month? Google reviews are the local-search needle-mover.</span>
-      <textarea class="cp-field" data-k="d3" data-q="Reviews / reachable clients" rows="1" placeholder="Type Auguste's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">The Wix site — keep the brand, or open rebuild?</span>
-      <span class="why">Is he attached to the current look/domain? Confirm we keep auguste-realtor.com and his brand, just rebuild underneath it.</span>
-      <textarea class="cp-field" data-k="d4" data-q="Wix / brand attachment" rows="1" placeholder="Type Auguste's answer…"></textarea>
-    </div>
-
-    <h3>Quick confirms</h3>
-    <div class="q">
-      <span class="t">Solo, or a team/transaction coordinator behind him?</span>
-      <textarea class="cp-field" data-k="c1" data-q="Solo vs team" rows="1" placeholder="Type Auguste's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">Assets ready? (pro photos, bio, past listing data, review text)</span>
-      <textarea class="cp-field" data-k="c2" data-q="Assets ready" rows="1" placeholder="Type Auguste's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">Why now — slow season, or building ahead of a push?</span>
-      <textarea class="cp-field" data-k="c3" data-q="Why now" rows="1" placeholder="Type Auguste's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">Does he handle property management leads too, or just sales here?</span>
-      <textarea class="cp-field" data-k="c4" data-q="PM vs sales scope" rows="1" placeholder="Type Auguste's answer…"></textarea>
-    </div>
-
-    <div class="mind">This call isn't to pitch the plan — it's to find the 2–3 places I'm wrong so v2 becomes <em>his</em>, not mine.</div>
-  </div>
-
-  <div class="cp-divider">Auguste's plan below</div>
-
-  <script>
-  (function(){
-    var KEY='auguste_prep_v1';
-    var fields=document.querySelectorAll('.cp-field');
-    var store={};
-    try{store=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
-    function autosize(f){f.style.height='auto';f.style.height=(f.scrollHeight+2)+'px';}
-    fields.forEach(function(f){
-      var id=f.getAttribute('data-k');
-      if(store[id]){f.value=store[id];}
-      autosize(f);
-      f.addEventListener('input',function(){
-        store[id]=f.value;
-        try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){}
-        autosize(f);
-      });
-    });
-    var copyBtn=document.getElementById('cpCopy');
-    if(copyBtn){copyBtn.addEventListener('click',function(){
-      var out='CALL NOTES — Auguste Vende / All East Bay Properties\\n\\n';
-      fields.forEach(function(f){
-        var a=(f.value||'').trim();
-        if(a){out+=f.getAttribute('data-q')+'\\n'+a+'\\n\\n';}
-      });
-      navigator.clipboard.writeText(out).then(function(){
-        copyBtn.textContent='Copied ✓';
-        setTimeout(function(){copyBtn.textContent='Copy answers';},1600);
-      }).catch(function(){copyBtn.textContent='Press Ctrl+C';});
-    });}
-    var clearBtn=document.getElementById('cpClear');
-    if(clearBtn){clearBtn.addEventListener('click',function(){
-      if(!window.confirm('Clear all typed answers?')){return;}
-      store={};try{localStorage.removeItem(KEY);}catch(e){}
-      fields.forEach(function(f){f.value='';autosize(f);});
-    });}
-  })();
-  </script>
-`;
-}
-
 function plan() {
-  return head('Website Plan — Auguste Vende · AraBuilds') + callGuide() + `
+  return head('Website Plan — Auguste Vende · AraBuilds') + `
   <div class="doc-head">
     <a class="logo" href="/"><span class="mark">A</span>Ara<b>Builds</b></a>
     <span class="label" style="margin-top:22px">website plan · prepared for auguste</span>
-    <h1 class="doc-title">All East Bay <span class="accent">Properties.</span></h1>
-    <p class="doc-sub">Here's how I'd turn your website from a nice digital business card into something that actually brings you buyers and sellers — plain and in order. Think of this as a starting point, not a verdict: tell me what fits, what doesn't, and where I've got your business wrong.</p>
+    <h1 class="doc-title">The Emeryville <span class="accent">condo specialist.</span></h1>
+    <p class="doc-sub">Here's how I'd turn your site from a nice business card into the place every Emeryville condo buyer and seller lands first — and how we put the 60 deals you've already closed to work winning the next ones. A starting point, not a verdict: tell me where I've got it wrong.</p>
 
     <aside class="titleblock" aria-label="Plan details">
       <div class="tb-head"><span class="t">Plan Spec</span><span class="dot"></span></div>
       <dl>
         <div class="tb-row"><dt>Prepared for</dt><dd>Auguste Vende</dd></div>
         <div class="tb-row"><dt>Brokerage</dt><dd>All East Bay Properties · DRE#02090399</dd></div>
-        <div class="tb-row"><dt>Goal</dt><dd>More buyer &amp; seller leads</dd></div>
-        <div class="tb-row"><dt>Service area</dt><dd>Oakland · Berkeley · Emeryville → East Bay</dd></div>
+        <div class="tb-row"><dt>Focus</dt><dd>Sellers first · Emeryville condos</dd></div>
+        <div class="tb-row"><dt>Niche</dt><dd>Condos → neighboring cities → small multifamily</dd></div>
         <div class="tb-row"><dt>Prepared by</dt><dd>AraBuilds · June 2026</dd></div>
       </dl>
     </aside>
@@ -321,16 +175,17 @@ function plan() {
 
   <section>
     <span class="label">the read</span>
-    <h2>You've got the hard part already</h2>
-    <p>You're the Broker of Record, you've helped run <strong>500+ homes</strong> across the East Bay since 2005, you've got real reviews on Zillow and Experience, and you've got a story people remember — the jazz musician who became their realtor. That's trust most agents would kill for. <span class="muted">The credibility is real and it's yours.</span></p>
-    <p>The problem isn't you — it's that <strong>your website can't be found and can't catch a lead.</strong> It's five clean pages on Wix. Nobody searching "Oakland realtor" or "sell my house in Emeryville" is landing on it, there's no way for a seller to get a home value or a buyer to get listing alerts, and the only path is "book a Calendly call." Everyone who isn't ready to book a meeting right then just leaves. <span class="muted">That's the whole gap — and it's very fixable.</span></p>
-    <div class="callout"><b>What I think is mainly holding the site back:</b> it's a brochure, not a lead engine. The rest of this is aimed at fixing that, in order — but you know your business better than I do, so push back anywhere it doesn't fit.</div>
+    <h2>Your funnel already works. The website is the weak link.</h2>
+    <p>This is the part most agents never get right and you already have: your paid Google ads bring in leads at <strong>~$80 each and you close about half of them.</strong> That's a fantastic number. On top of that, the property-management portfolio feeds you listings, and you've personally closed <strong>around 60 properties</strong>. The lead math and the track record are both real. <span class="muted">You're not short on skill or on leads that convert.</span></p>
+    <p>The gap is what happens <strong>after</strong> someone hears your name or clicks your ad and looks you up. They land on a five-page Wix brochure that doesn't say "Emeryville condo specialist," doesn't show the 60 homes you've sold, can't search listings, and can't capture them if they're not ready to book a call right that second. <span class="muted">You're paying to send people to a site that undersells you and lets the not-quite-ready ones slip away.</span></p>
+    <div class="callout"><b>The job of the new site:</b> make your paid leads close even better, and start pulling in <b>free</b> ones from search — built on proof you already have. Push back anywhere this doesn't fit.</div>
   </section>
 
   <section>
     <span class="label">the reframe</span>
-    <h2>You don't need a flashier site. You need to get found, and catch the lead.</h2>
-    <p>Zillow and Redfin already won the "browse homes" game — chasing them is a money pit. Your edge is different: you're the trusted local broker people <strong>want a human for</strong> when they're actually buying or selling in the East Bay. So we build two things — <strong>pages Google can find</strong> when someone searches your cities, and <strong>simple tools that capture the lead</strong> the moment they land. Quality leads from people already in your backyard, not a flood of tire-kickers.</p>
+    <h2>Don't be everyone's East Bay agent. Be <em>the</em> Emeryville condo agent.</h2>
+    <p>"East Bay realtor" puts you against hundreds of generalists. <strong>"Emeryville condos"</strong> is a niche you can actually own — and you already do the work. When you're the obvious specialist, three things happen: you can rank #1 for the searches that matter, sellers pick you because <strong>specialists win listings</strong>, and everything we publish compounds instead of getting lost in the noise.</p>
+    <p>So the site leads with Emeryville condos, then widens out the way your business does — <strong>condos in the neighboring cities</strong>, and <strong>small multifamily</strong> in the same area (the kind you just sold through the PM company). One clear lane, then the adjacent ones.</p>
   </section>
 
   <section>
@@ -338,32 +193,41 @@ function plan() {
     <h2>How I'd build it</h2>
     <div class="phases">
       <div class="phase">
-        <span class="ph">Phase 1 · Foundation &amp; getting found</span>
-        <h3>A fast site Google actually understands</h3>
+        <span class="ph">Phase 1 · Foundation &amp; the niche</span>
+        <h3>A fast site that says "Emeryville condos" loud and clear</h3>
         <ul>
-          <li><strong>Rebuild on a fast, owned site</strong> <span class="muted">— same as the trade businesses in my portfolio. You keep your brand and domain (auguste-realtor.com); we just put a real engine under it.</span></li>
-          <li><strong>A page for each city you work</strong> <span class="muted">— start with Oakland, Berkeley, and Emeryville. Real content about each market so you can rank for "Oakland realtor," "sell my house Berkeley," and the like. This is the part the current site is missing entirely.</span></li>
-          <li><strong>Proper real-estate setup behind the scenes</strong> <span class="muted">— the search-engine tags and licensing/Equal-Housing details done right (I handle the compliance side), so Google knows exactly who you are and where you work.</span></li>
-          <li><strong>Tie your presence together</strong> <span class="muted">— Google Business Profile, Zillow, and your site all pointing at each other and saying the same thing.</span></li>
+          <li><strong>Rebuild keeping the look and domain you like</strong> <span class="muted">— same auguste-realtor.com, in the clean, high-end style you pointed me to (the feel of timallenproperties.com). We just put a real engine underneath.</span></li>
+          <li><strong>Emeryville condos as the front door</strong> <span class="muted">— a page built to rank for "Emeryville condos for sale" and "Emeryville condo realtor," then pages for the neighboring cities and small multifamily.</span></li>
+          <li><strong>Real-estate setup done right</strong> <span class="muted">— the search-engine tags, schema, and DRE/Equal-Housing details (I handle compliance) so Google knows you're the Emeryville condo specialist.</span></li>
+          <li><strong>Tie your presence together</strong> <span class="muted">— your Google profile, the Local Service Ads, and Zillow all pointing at the new site and saying the same thing.</span></li>
         </ul>
       </div>
       <div class="phase">
-        <span class="ph">Phase 2 · Catch the leads</span>
-        <h3>Stop letting visitors leave empty-handed</h3>
+        <span class="ph">Phase 2 · Proof — put your 60 deals to work</span>
+        <h3>The single best thing for winning listings</h3>
         <ul>
-          <li><strong>A "What's my home worth?" tool for sellers</strong> <span class="muted">— the single best-converting thing on a real estate site. They tell you about their home, you get a hot seller lead in your inbox.</span></li>
-          <li><strong>Listing alerts for buyers</strong> <span class="muted">— they tell you what they're looking for, you capture the email and follow up. No more anonymous visitors.</span></li>
-          <li><strong>Everything lands in one place</strong> <span class="muted">— each lead emails you instantly and drops into a simple dashboard so nothing slips and you know exactly who to call.</span></li>
+          <li><strong>A "Recently Sold" showcase</strong> <span class="muted">— the feature you liked on sashabayrealtor.com. Every closed sale with photo, price, and neighborhood. For a seller deciding who to trust with their condo, nothing beats a wall of homes you've already sold.</span></li>
+          <li><strong>Your reviews, front and center</strong> <span class="muted">— you've got plenty; we feature them where they do the most work, not buried on one page.</span></li>
+          <li><strong>The human story</strong> <span class="muted">— the jazz-musician-turned-broker angle people remember, woven in.</span></li>
         </ul>
       </div>
       <div class="phase">
-        <span class="ph">Phase 3 · Grow it</span>
-        <h3>The part that compounds</h3>
+        <span class="ph">Phase 3 · Live search &amp; lead capture</span>
+        <h3>Make it a real destination — and stop losing visitors</h3>
         <ul>
-          <li><strong>Neighborhood guides &amp; content</strong> <span class="muted">— answer the questions East Bay buyers and sellers are already Googling. Each one is another door into your site.</span></li>
-          <li><strong>A reviews engine</strong> <span class="muted">— a simple way to keep happy clients leaving you Google reviews, which is what wins the local search game.</span></li>
-          <li><strong>Ongoing local SEO</strong> <span class="muted">— keep sharpening what ranks and what converts.</span></li>
-          <li><strong>Live home search, later if you want it</strong> <span class="muted">— we can plug real MLS listings with search right into your site ("IDX") down the road. It's a monthly add-on, so we'd do it once leads are already flowing — not day one.</span></li>
+          <li><strong>Live home search (IDX) right on your site</strong> <span class="muted">— real MLS listings, searchable, the same kind of setup sashabayrealtor.com uses. Buyers search on your site instead of leaving for Zillow, and sold comps show automatically. Budget roughly <strong>$50–110/month</strong> for the vendor on top of your MLS; I'll lock the exact number once we pick one.</span></li>
+          <li><strong>"What's my Emeryville condo worth?"</strong> <span class="muted">— a valuation tool aimed right at your niche. The best seller-lead magnet there is.</span></li>
+          <li><strong>Buyer listing alerts</strong> <span class="muted">— capture the email, follow up, no more anonymous visitors.</span></li>
+          <li><strong>Every lead in one place</strong> <span class="muted">— emails you instantly and drops into a simple dashboard so nothing slips.</span></li>
+        </ul>
+      </div>
+      <div class="phase">
+        <span class="ph">Phase 4 · Grow &amp; compound</span>
+        <h3>Lean less on paid over time</h3>
+        <ul>
+          <li><strong>Condo-building &amp; neighborhood guides</strong> <span class="muted">— the specific Emeryville buildings and pockets buyers search by name. Each one is another free door into your site.</span></li>
+          <li><strong>A small-multifamily / investor angle</strong> <span class="muted">— almost no agent owns this, and you just sold an 8- and 12-unit. Ties straight to the PM portfolio.</span></li>
+          <li><strong>Reviews engine + ongoing SEO</strong> <span class="muted">— keep the Google reviews coming and keep sharpening what ranks, so the free leads grow.</span></li>
         </ul>
       </div>
     </div>
@@ -371,23 +235,22 @@ function plan() {
 
   <section>
     <span class="label">what success looks like</span>
-    <h2>A steady trickle of leads from your own site</h2>
-    <p>Instead of renting attention on Zillow, you've got buyers and sellers finding <strong>you</strong> — searching their East Bay city, landing on your page, and raising their hand right there. A few extra deals a year from your own site pays for the whole thing many times over, and it's all built on the trust you've already earned. <span class="muted">That's the goal: your reputation, finally working for you online.</span></p>
+    <h2>The same great close rate — on more, cheaper, and <strong>your own</strong> leads</h2>
+    <p>You already turn ~half your $80 leads into deals. Put those clicks onto a site that screams "Emeryville condo specialist," backed by 60 sold homes and live search, and that number only gets better — while organic search quietly adds leads you didn't pay for. A couple of extra listings a year at 2.5–3% covers all of this many times over. <span class="muted">The goal: your reputation and your track record, finally working for you online.</span></p>
   </section>
 
   <section>
     <div class="firstmove">
       <span class="label">start here</span>
-      <h2>If you're in, a great first step</h2>
-      <p>Whenever you're ready, send me a few things and I'll start shaping the real thing while we sort out the details together:</p>
+      <h2>Let's go</h2>
+      <p>When you're ready, send me a few things:</p>
       <ol>
         <li>Your <strong>bio</strong> and a couple of <strong>professional photos</strong>.</li>
-        <li>The <strong>cities/neighborhoods</strong> where your best deals come from.</li>
-        <li>A handful of <strong>reviews or testimonials</strong> I can feature, and any past listing photos.</li>
+        <li>Your <strong>list of sold properties</strong> — addresses and photos for the Recently Sold wall.</li>
+        <li>A handful of favorite <strong>reviews</strong>, and if you are ready your <strong>MLS login</strong> so I can set up the live search. We can totally wait on this one.</li>
       </ol>
       <div class="ctas">
-        <a class="cta" href="sms:+15106942210">Text me the details →</a>
-        <a class="cta ghost" href="tel:+15106942210">Call AraBuilds</a>
+        <a class="cta" href="${INTAKE_LINK}">Send it over →</a>
       </div>
     </div>
   </section>
