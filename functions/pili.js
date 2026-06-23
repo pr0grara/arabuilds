@@ -128,6 +128,12 @@ function head(title) {
 
   footer{border-top:1px solid var(--line);padding-top:24px;margin-top:8px;color:var(--muted);font-size:12.5px;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
 
+  /* dark mode: the Plan Spec card uses --navy for its header bar + border, but --navy
+     flips light in dark mode (headlines go light). Pin those back to brand navy so the
+     header bar stays dark with legible white text and the border isn't washed out. */
+  :root[data-theme="dark"] .titleblock{border-color:#33405c}
+  :root[data-theme="dark"] .tb-head{background:#1b2a47}
+
   /* internal call-prep block — temporary, removed before sending to Pili */
   .cp{border:1.5px dashed #c8912f;border-radius:10px;padding:clamp(18px,3vw,26px);margin-bottom:18px;background:rgba(200,145,47,.06)}
   .cp-flag{font-family:var(--mono);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#b5751c;font-weight:700;margin-bottom:14px}

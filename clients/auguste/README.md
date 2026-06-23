@@ -3,7 +3,9 @@
 > **Private.** Excluded from public serving via `.assetsignore` (the `clients` entry). Do not move out of this folder.
 
 ## Who
-- **Name:** Auguste Vende — Broker of Record, **All East Bay Properties**
+- **Name:** Auguste Vende
+- **His brand / handle:** **Auguste Realtor** (auguste-realtor.com). This is his only brand — he has no other business name.
+- **Brokerage (employer, NOT his brand):** All East Bay Properties — where he holds his license. Don't present this as his brand in any client-facing copy.
 - **License:** Auguste DRE#02090399 · brokerage DRE#01516255
 - **Office:** 2324 Powell Street, Emeryville, CA 94608
 - **Contact:** (510) 421-6994 · auguste@alleastbay.com

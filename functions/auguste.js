@@ -1,14 +1,12 @@
-// GET/POST /auguste — password-protected branded plan for Auguste Vende (All East Bay Properties).
+// GET/POST /auguste — password-protected branded plan for Auguste Vende (brand: Auguste Realtor).
 // Plan HTML is only returned once the password is correct (checked server-side),
 // behind a styled on-brand gate instead of the default Basic-Auth popup.
 
-const PASSWORD = 'eastbay'; // dead simple, on-theme. Change here anytime.
+const PASSWORD = 'thecondoman'; // dead simple, on-theme. Change here anytime.
 const COOKIE = 'auguste_ok=1';
 
-// Where the "Send it over" CTA points. Default is email; if we set up a shared
-// Google Drive folder for his assets, paste the folder link here instead.
-const INTAKE_LINK = 'mailto:azbaghda@gmail.com?subject=' +
-  encodeURIComponent('Auguste — site assets for AraBuilds');
+// Where the CTA points — the shared Google Drive folder for his assets.
+const INTAKE_LINK = 'https://drive.google.com/drive/folders/1KiqIBYWCqdaCTRJ3__47OyYhuQ9KA5Ij?usp=drive_link';
 
 export async function onRequest(context) {
   const { request } = context;
@@ -32,7 +30,7 @@ export async function onRequest(context) {
 
   if (authed) return html(plan());
 
-  // Convenience: a one-tap link (e.g. text Auguste /auguste?pw=eastbay). Sets the cookie too.
+  // Convenience: a one-tap link (e.g. text Auguste /auguste?pw=thecondoman). Sets the cookie too.
   const qpw = new URL(request.url).searchParams.get('pw');
   if (qpw && qpw.trim().toLowerCase() === PASSWORD) {
     return new Response(plan(), {
@@ -132,6 +130,12 @@ function head(title) {
   .cta.ghost:hover{border-color:var(--accent);color:var(--accent)}
 
   footer{border-top:1px solid var(--line);padding-top:24px;margin-top:8px;color:var(--muted);font-size:12.5px;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+
+  /* dark mode: the Plan Spec card uses --navy for its header bar + border, but --navy
+     flips light in dark mode (headlines go light). Pin those back to brand navy so the
+     header bar stays dark with legible white text and the border isn't washed out. */
+  :root[data-theme="dark"] .titleblock{border-color:#33405c}
+  :root[data-theme="dark"] .tb-head{background:#1b2a47}
 </style>
 <link rel="stylesheet" href="/assets/theme.css">
 <script src="/assets/theme.js" defer></script>
@@ -164,8 +168,8 @@ function plan() {
     <aside class="titleblock" aria-label="Plan details">
       <div class="tb-head"><span class="t">Plan Spec</span><span class="dot"></span></div>
       <dl>
-        <div class="tb-row"><dt>Prepared for</dt><dd>Auguste Vende</dd></div>
-        <div class="tb-row"><dt>Brokerage</dt><dd>All East Bay Properties · DRE#02090399</dd></div>
+        <div class="tb-row"><dt>Prepared for</dt><dd>Auguste Vende · DRE#02090399</dd></div>
+        <div class="tb-row"><dt>Brand</dt><dd>Auguste Realtor · auguste-realtor.com</dd></div>
         <div class="tb-row"><dt>Focus</dt><dd>Sellers first · Emeryville condos</dd></div>
         <div class="tb-row"><dt>Niche</dt><dd>Condos → neighboring cities → small multifamily</dd></div>
         <div class="tb-row"><dt>Prepared by</dt><dd>AraBuilds · June 2026</dd></div>
@@ -186,6 +190,7 @@ function plan() {
     <h2>Don't be everyone's East Bay agent. Be <em>the</em> Emeryville condo agent.</h2>
     <p>"East Bay realtor" puts you against hundreds of generalists. <strong>"Emeryville condos"</strong> is a niche you can actually own — and you already do the work. When you're the obvious specialist, three things happen: you can rank #1 for the searches that matter, sellers pick you because <strong>specialists win listings</strong>, and everything we publish compounds instead of getting lost in the noise.</p>
     <p>So the site leads with Emeryville condos, then widens out the way your business does — <strong>condos in the neighboring cities</strong>, and <strong>small multifamily</strong> in the same area (the kind you just sold through the PM company). One clear lane, then the adjacent ones.</p>
+    <div class="callout"><b>Where the SEO really pays:</b> instead of one generic "areas served" blurb, I build a custom, in-depth page for <b>each market you work</b> — Emeryville condos, then each neighboring city and small multifamily — each one engineered to rank for exactly what people there are Googling. Your current five-page site can't show up for any of those searches. A handful of these specialized pages can quietly out-earn the entire site you have today, pulling in leads around the clock that you never pay per click for. <span class="muted">That's the difference between renting attention and owning it.</span></div>
   </section>
 
   <section>
@@ -197,7 +202,7 @@ function plan() {
         <h3>A fast site that says "Emeryville condos" loud and clear</h3>
         <ul>
           <li><strong>Rebuild keeping the look and domain you like</strong> <span class="muted">— same auguste-realtor.com, in the clean, high-end style you pointed me to (the feel of timallenproperties.com). We just put a real engine underneath.</span></li>
-          <li><strong>Emeryville condos as the front door</strong> <span class="muted">— a page built to rank for "Emeryville condos for sale" and "Emeryville condo realtor," then pages for the neighboring cities and small multifamily.</span></li>
+          <li><strong>Custom city pages, built to rank</strong> <span class="muted">— a dedicated, in-depth page for each market: Emeryville condos first (targeting "Emeryville condos for sale," "Emeryville condo realtor"), then each neighboring city and small multifamily. Real organic presence your five-page site can't produce — and it keeps working long after the ad budget stops.</span></li>
           <li><strong>Real-estate setup done right</strong> <span class="muted">— the search-engine tags, schema, and DRE/Equal-Housing details (I handle compliance) so Google knows you're the Emeryville condo specialist.</span></li>
           <li><strong>Tie your presence together</strong> <span class="muted">— your Google profile, the Local Service Ads, and Zillow all pointing at the new site and saying the same thing.</span></li>
         </ul>
@@ -235,28 +240,28 @@ function plan() {
 
   <section>
     <span class="label">what success looks like</span>
-    <h2>The same great close rate — on more, cheaper, and <strong>your own</strong> leads</h2>
+    <h2>The same great close rate — on <strong>your own</strong> leads</h2>
     <p>You already turn ~half your $80 leads into deals. Put those clicks onto a site that screams "Emeryville condo specialist," backed by 60 sold homes and live search, and that number only gets better — while organic search quietly adds leads you didn't pay for. A couple of extra listings a year at 2.5–3% covers all of this many times over. <span class="muted">The goal: your reputation and your track record, finally working for you online.</span></p>
   </section>
 
   <section>
     <div class="firstmove">
       <span class="label">start here</span>
-      <h2>Let's go</h2>
-      <p>When you're ready, send me a few things:</p>
+      <p style="font-size:17px">If you're ready, give me the green light to move forward with the website. Then drop a few things in our shared folder:</p>
       <ol>
         <li>Your <strong>bio</strong> and a couple of <strong>professional photos</strong>.</li>
         <li>Your <strong>list of sold properties</strong> — addresses and photos for the Recently Sold wall.</li>
-        <li>A handful of favorite <strong>reviews</strong>, and if you are ready your <strong>MLS login</strong> so I can set up the live search. We can totally wait on this one.</li>
+        <li>A handful of favorite <strong>reviews</strong>, and later your <strong>MLS login</strong> so I can set up the live search. Don't put it in drive/lets wait a little for this one</li>
       </ol>
       <div class="ctas">
-        <a class="cta" href="${INTAKE_LINK}">Send it over →</a>
+        <a class="cta" href="${INTAKE_LINK}" target="_blank" rel="noopener">Open the shared folder →</a>
       </div>
+      <p style="margin-top:16px;color:var(--muted)">Questions, comments, or changes first? <a href="tel:+15106942210" style="color:var(--accent);font-weight:600">Give me a call</a>.</p>
     </div>
   </section>
 
   <footer>
-    <span>Prepared by AraBuilds for Auguste Vende — All East Bay Properties</span>
+    <span>Prepared by AraBuilds for Auguste Vende — Auguste Realtor</span>
     <a href="/">arabuilds.com</a>
   </footer>` + foot;
 }

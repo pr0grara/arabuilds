@@ -54,5 +54,5 @@ Full client-facing version lives in the proposal page: [`functions/auguste.js`](
 
 - [ ] Deploy `/auguste` (`nvm use 22 && npm run deploy`) and send him `arabuilds.com/auguste?pw=eastbay`.
 - [ ] Decide IDX vendor (default lean: **iHomeFinder**, what the reference site uses) and confirm his MLS allows it.
-- [ ] Set up shared Google Drive for assets → paste link into `INTAKE_LINK` in `functions/auguste.js` (currently emails azbaghda@gmail.com).
+- [x] Shared Google Drive set up → wired into `INTAKE_LINK` in `functions/auguste.js` (CTA = "Open the shared folder"). Folder: https://drive.google.com/drive/folders/1KiqIBYWCqdaCTRJ3__47OyYhuQ9KA5Ij
 - [ ] Collect: bio, photos, ~60 sold properties (addresses + photos), favorite reviews, MLS login.
