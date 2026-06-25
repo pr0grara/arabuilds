@@ -4,6 +4,7 @@
 
 const PASSWORD = 'rebar'; // dead simple, concrete-related. Change here anytime.
 const COOKIE = 'pili_ok=1';
+const INTAKE_LINK = 'https://drive.google.com/drive/folders/1Fxd_tG4uKKA2KuwIktSbHgFLEooeRH3X'; // shared asset-intake folder
 
 export async function onRequest(context) {
   const { request } = context;
@@ -115,6 +116,18 @@ function head(title) {
   .phase li::before{content:"›";position:absolute;left:2px;color:var(--accent);font-weight:700}
   .phase li .muted{color:var(--muted)}
 
+  /* roadmap dropdowns */
+  .phase details.d{border-top:1px solid var(--line)}
+  .phase summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:11px 0;font-weight:700;color:var(--navy);font-size:14.5px;line-height:1.35}
+  .phase summary::-webkit-details-marker{display:none}
+  .phase summary .s-t{flex:1}
+  .phase summary .owner{font-family:var(--mono);font-size:9px;letter-spacing:.8px;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid var(--line-2);color:var(--muted);font-weight:700;white-space:nowrap}
+  .phase summary .owner.both{color:var(--accent);border-color:var(--accent)}
+  .phase summary::after{content:"+";color:var(--accent);font-weight:700;font-size:18px;line-height:1;width:12px;text-align:center;flex:none}
+  .phase details[open] summary::after{content:"–"}
+  .phase .dd{padding:2px 0 13px;color:var(--muted);font-size:14px;line-height:1.55;max-width:62ch}
+  .phase .dd strong{color:var(--navy)}
+
   .firstmove{border:1.5px solid var(--accent);border-radius:10px;padding:22px clamp(18px,3vw,26px);background:rgba(47,125,82,.05)}
   .firstmove h2{margin-top:0}
   .firstmove ol{margin:6px 0 0 20px;display:grid;gap:7px}
@@ -181,144 +194,20 @@ function gate(error) {
   </div>` + foot;
 }
 
-function callGuide() {
-  return `
-  <div class="cp">
-    <div class="cp-flag">⚠ Internal · call prep — not part of Pili's plan · remove before sending</div>
-    <h2>Call prep — man to man with Pili</h2>
-    <p class="cp-sub">The plan below rests on a few assumptions. These are the spots to pull out of him on the call. Don't leave without the license timeline, his real capacity, and the money. Let him talk ~70%.</p>
-
-    <div class="cp-tools">
-      <button type="button" class="cp-btn" id="cpCopy">Copy answers</button>
-      <button type="button" class="cp-btn" id="cpClear">Clear</button>
-      <span class="cp-note">saved in this browser as you type</span>
-    </div>
-
-    <h3>The four that change the plan</h3>
-    <div class="q">
-      <span class="t">1. License &amp; insurance — where exactly, and when?</span>
-      <span class="ask"><b>Ask:</b> Which license (C-8 concrete or B general)? Passed the exam? Bonded? Real date it's active? General liability now, and workers' comp for the crew?</span>
-      <span class="why"><b>Why:</b> In CA you generally need a CSLB license once a job crosses ~$500 (labor + materials) — his ideal job is $10k+. Until it lands he can't legally chase the jobs we're building toward.</span>
-      <textarea class="cp-field" data-k="q1" data-q="1. License + insurance" rows="1" placeholder="Type Pili's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">2. Real capacity — and who is the crew?</span>
-      <span class="ask"><b>Ask:</b> If leads showed up tomorrow, how many jobs a month could you actually run? Employees, 1099, or on-call guys? Could you run two crews?</span>
-      <span class="why"><b>Why:</b> 3–5 people but only 1–3 jobs/month doesn't add up. Sets the entire lead-gen target — if the true ceiling is 6–8, we build differently.</span>
-      <textarea class="cp-field" data-k="q2" data-q="2. Real capacity + crew" rows="1" placeholder="Type Pili's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">3. The money</span>
-      <span class="ask"><b>Ask:</b> Roughly what are you doing in revenue a month now? What does a typical job invoice at? Know your margins? And what can you put into this each month?</span>
-      <span class="why"><b>Why:</b> No baseline today. Right-sizes the plan and tells us if pricing is the fastest win.</span>
-      <textarea class="cp-field" data-k="q3" data-q="3. The money" rows="1" placeholder="Type Pili's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">4. Direction — homeowners or general contractors?</span>
-      <span class="ask"><b>Ask:</b> Keep subbing for GCs, or shift to direct homeowners? Which has been better money and less headache?</span>
-      <span class="why"><b>Why:</b> Direct = Google/site/reviews are the whole game. GC = relationships. Changes where we spend effort first.</span>
-      <textarea class="cp-field" data-k="q4" data-q="4. Direction (homeowners vs GCs)" rows="1" placeholder="Type Pili's answer…"></textarea>
-    </div>
-
-    <h3>Deeper — sharpen it</h3>
-    <div class="q">
-      <span class="t">"Bad leads" + where deals die</span>
-      <span class="why">What makes a lead junk to him? When he quotes and loses, why? (Texts quotes, follows up "sometimes.")</span>
-      <textarea class="cp-field" data-k="d1" data-q="Bad leads / where deals die" rows="1" placeholder="Type Pili's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">Is the review asset real?</span>
-      <span class="why">Can he pull 15–20 past customers' numbers this week? He listed "reviews" as proof but has 0 on Google — what did he mean?</span>
-      <textarea class="cp-field" data-k="d2" data-q="Review asset (reachable customers)" rows="1" placeholder="Type Pili's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">Tree / landscape — real money or side gig?</span>
-      <span class="why">What share is concrete vs tree vs landscape? Decides the name and what we market.</span>
-      <textarea class="cp-field" data-k="d3" data-q="Tree/landscape vs concrete split" rows="1" placeholder="Type Pili's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">Home base + where he wins</span>
-      <span class="why">Where's he based, and where have the best, most profitable jobs come from?</span>
-      <textarea class="cp-field" data-k="d4" data-q="Home base + where he wins" rows="1" placeholder="Type Pili's answer…"></textarea>
-    </div>
-
-    <h3>Quick confirms</h3>
-    <div class="q">
-      <span class="t">Who owns it — just him, or partners?</span>
-      <textarea class="cp-field" data-k="c1" data-q="Owner / partners" rows="1" placeholder="Type Pili's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">Either name already registered? (entity, EIN, bank, Yelp/FB)</span>
-      <textarea class="cp-field" data-k="c2" data-q="Name already registered?" rows="1" placeholder="Type Pili's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">Why now — slow and needs work, or building ahead?</span>
-      <textarea class="cp-field" data-k="c3" data-q="Why now / season" rows="1" placeholder="Type Pili's answer…"></textarea>
-    </div>
-    <div class="q">
-      <span class="t">Photos usable? Testimonials written down or verbal?</span>
-      <textarea class="cp-field" data-k="c4" data-q="Photos / testimonials" rows="1" placeholder="Type Pili's answer…"></textarea>
-    </div>
-
-    <div class="mind">This call isn't to pitch the plan — it's to find the 2–3 places you're wrong so v2 becomes <em>his</em>, not yours.</div>
-  </div>
-
-  <div class="cp-divider">Pili's plan below</div>
-
-  <script>
-  (function(){
-    var KEY='pili_prep_v1';
-    var fields=document.querySelectorAll('.cp-field');
-    var store={};
-    try{store=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
-    function autosize(f){f.style.height='auto';f.style.height=(f.scrollHeight+2)+'px';}
-    fields.forEach(function(f){
-      var id=f.getAttribute('data-k');
-      if(store[id]){f.value=store[id];}
-      autosize(f);
-      f.addEventListener('input',function(){
-        store[id]=f.value;
-        try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){}
-        autosize(f);
-      });
-    });
-    var copyBtn=document.getElementById('cpCopy');
-    if(copyBtn){copyBtn.addEventListener('click',function(){
-      var out='CALL NOTES — Pili / Pacific West Concrete\\n\\n';
-      fields.forEach(function(f){
-        var a=(f.value||'').trim();
-        if(a){out+=f.getAttribute('data-q')+'\\n'+a+'\\n\\n';}
-      });
-      navigator.clipboard.writeText(out).then(function(){
-        copyBtn.textContent='Copied ✓';
-        setTimeout(function(){copyBtn.textContent='Copy answers';},1600);
-      }).catch(function(){copyBtn.textContent='Press Ctrl+C';});
-    });}
-    var clearBtn=document.getElementById('cpClear');
-    if(clearBtn){clearBtn.addEventListener('click',function(){
-      if(!window.confirm('Clear all typed answers?')){return;}
-      store={};try{localStorage.removeItem(KEY);}catch(e){}
-      fields.forEach(function(f){f.value='';autosize(f);});
-    });}
-  })();
-  </script>
-`;
-}
-
 function plan() {
-  return head('Growth Plan — Pacific West Concrete · AraBuilds') + callGuide() + `
+  return head('Growth Plan — Pacific West Concrete · AraBuilds') + `
   <div class="doc-head">
     <a class="logo" href="/"><span class="mark">A</span>Ara<b>Builds</b></a>
     <span class="label" style="margin-top:22px">growth plan · prepared for pili</span>
     <h1 class="doc-title">Pacific West <span class="accent">Concrete.</span></h1>
-    <p class="doc-sub">Here's how I'd take you from skilled-but-invisible to a concrete business that books steady, good-paying work — plain and in order. Think of this as a starting point, not a verdict: tell me what fits, what doesn't, and where I've got your business wrong.</p>
+    <p class="doc-sub">Here's how I'd take you from skilled-but-invisible to a concrete business that books steady, good-paying work — plain and in order. Think of this as a starting point, not a verdict: tell me what fits, what doesn't, and where I might've got your business wrong.</p>
 
     <aside class="titleblock" aria-label="Plan details">
       <div class="tb-head"><span class="t">Plan Spec</span><span class="dot"></span></div>
       <dl>
         <div class="tb-row"><dt>Prepared for</dt><dd>Pili</dd></div>
-        <div class="tb-row"><dt>Trade</dt><dd>Concrete · flatwork &amp; hardscape</dd></div>
-        <div class="tb-row"><dt>Service area</dt><dd>Oakland → San Francisco</dd></div>
+        <div class="tb-row"><dt>Trade</dt><dd>Concrete · foundations, retaining walls &amp; drainage, flatwork</dd></div>
+        <div class="tb-row"><dt>Service area</dt><dd>Alameda, Berkeley, Walnut Creek, Benicia, Tiburon</dd></div>
         <div class="tb-row"><dt>Engagement</dt><dd>Full growth partner</dd></div>
         <div class="tb-row"><dt>Prepared by</dt><dd>AraBuilds · June 2026</dd></div>
       </dl>
@@ -326,55 +215,75 @@ function plan() {
   </div>
 
   <section>
-    <span class="label">the read</span>
+    <span class="label">my evaluation</span>
     <h2>You've got the hard part already</h2>
-    <p>You're skilled, you run a 3–5 person crew, and you've got <strong>lots</strong> of photos, before-and-afters, real testimonials, GC referrals, and years of work behind you. You answer same-day. That's a stronger base than most guys ever build.</p>
-    <p>The problem isn't the work — it's that <strong>none of it exists online.</strong> No website, no Google profile, zero reviews, two different business names, license and insurance still in process. To someone deciding who pours their $12k driveway, you're invisible and unverifiable right now. <span class="muted">That's the whole gap — and it's very fixable.</span></p>
-    <div class="callout"><b>What I think is mainly holding you back:</b> legitimacy &amp; visibility. The rest of this is aimed at fixing that, in order — but you know your business better than I do, so push back anywhere it doesn't fit.</div>
+    <p>This is a trade your dad handed you and you took further — foundations, stem walls, retaining walls with full drainage, excavation and grading. You don't just swing the labor; you organize the crew, rent the equipment, and write the bids. Years in, a deep bench of family who can work, and a phone full of real before-and-afters. That's a stronger base than most guys ever build on.</p>
+    <p>Here's the honest gap: <strong>every concrete job you do comes through one general contractor.</strong> All your eggs in one basket. You're building someone else's business — you don't own a single one of those customers, and the only work that comes to <em>you</em> directly is the odd tree job a few times a year. No license in your name, no Google profile, no website. So even though you can pour with anyone, a homeowner deciding who handles their $15k retaining wall has no way to find you or trust you.</p>
+    <div class="callout"><b>The core gap:</b> you have the skill, but none of it is <em>yours</em> yet — no license, no visibility, no customers of your own.</div>
   </section>
 
   <section>
-    <span class="label">the reframe</span>
-    <h2>You don't need more leads. You need a few good ones.</h2>
-    <p>You want $10–25k a month, and you comfortably run 1–3 jobs a month. That means the goal isn't a flood of calls — it's <strong>2–4 good jobs a month</strong> at your real prices. So we build trust and point it at the right work. That also kills your "too many bad leads" problem at the root.</p>
+    <span class="label">the strategy</span>
+    <h2>Step one on the way to the top</h2>
+    <p>The smart part: you don't bet anything. You keep doing the GC work that pays your bills — nothing there changes — and we plant something of your own alongside it: your name, your profile, your reviews, your own customers. There are good concrete guys in these towns already, but you're not trying to take them all on, or risk a dollar of your income to compete. You just need <strong>2–4 good jobs a month that are yours</strong>, in your best towns, at your real prices — every one on top of what you already make. <span class="muted">That's step one: water it, and it keeps growing.</span></p>
   </section>
 
   <section>
     <span class="label">the roadmap</span>
     <h2>How I'd build it</h2>
+    <p class="muted" style="margin:-2px 0 4px">Open any step for the how. The tag shows who drives it — <b style="color:var(--accent)">me</b>, <b style="color:var(--navy)">you</b>, or <b style="color:var(--accent)">together</b>.</p>
     <div class="phases">
       <div class="phase">
-        <span class="ph">Phase 0 · Week 1 — Settle the identity</span>
-        <h3>Land on one official business</h3>
-        <ul>
-          <li><strong>Pick one name — your call.</strong> <span class="muted">"Pilis Concrete / Pacific West Concrete and Landscaping" reads as two businesses right now. I lean toward <strong>Pacific West Concrete</strong> — concrete-forward, where your best money is, with tree/landscape as a side service. But it's your name; if Pilis Concrete means more to you, we run with that.</span></li>
-          <li><strong>Finish license &amp; insurance.</strong> <span class="muted">You're already in process — once it's done it unlocks trust, Google, and bidding bigger jobs legally. I'll walk the steps with you.</span></li>
-        </ul>
+        <span class="ph">Phase 0 · Starts now</span>
+        <h3>Get legit, on your own</h3>
+        <details class="d">
+          <summary><span class="s-t">Get your C-8 contractor license</span><span class="owner both">Together</span></summary>
+          <div class="dd">The big one — and you haven't started because nobody's shown you how. Your years on the job already qualify you for the <strong>C-8 (concrete)</strong> exam; from there it's mostly studying and passing a test. I walk every step — experience sign-off, application, exam, the contractor bond, and insurance (a concrete license requires workers' comp for your crew, so we line that up). If asking your GC to verify your hours is awkward, there are other ways to document them. It's a ~2-month process, so we start now and run it in the background while the faster wins get going.</div>
+        </details>
+        <details class="d">
+          <summary><span class="s-t">Lock in one official business name</span><span class="owner both">Together</span></summary>
+          <div class="dd">You're already <strong>Pacific West Concrete</strong> — we lead with concrete and keep landscaping as a quiet add-on. I'll confirm it's properly registered (entity, EIN, bank) so your license, Google, site, and reviews all point to one clean business.</div>
+        </details>
       </div>
       <div class="phase">
-        <span class="ph">Phase 1 · Weeks 1–2 — Turn your proof into a Google profile</span>
-        <h3>The fastest path to new calls</h3>
-        <ul>
-          <li><strong>Google Business Profile, live.</strong> <span class="muted">It's free, and it's literally where Bay Area people search "concrete near me." We load your existing photos and before/afters.</span></li>
-          <li><strong>Review engine.</strong> <span class="muted">You've got years of happy customers and GC referrals in your phone. We text them a one-tap link and get you to 10–20 reviews fast — this starts the phone ringing before the website is even done.</span></li>
-        </ul>
+        <span class="ph">Phase 1 · Early on</span>
+        <h3>Your first calls, from Google</h3>
+        <details class="d">
+          <summary><span class="s-t">Launch your Google Business Profile</span><span class="owner">AraBuilds</span></summary>
+          <div class="dd">It's free, and it's exactly where Bay Area homeowners search "concrete near me." I load your photos and before/afters, set your service towns, and pull over your Yelp reviews. Google verifies new profiles with a quick phone video of your truck and tools — I'll hand you a simple shot-list (your only 2-minute part) so it passes first try.</div>
+        </details>
+        <details class="d">
+          <summary><span class="s-t">Get to 10–20 reviews, fast</span><span class="owner both">Together</span></summary>
+          <div class="dd">I set up a one-tap Google review link and write you a short, ready-to-send message. You text it to past customers — tree, landscape, side jobs, anyone glad they hired you. Coming straight from you, it lands far better than from a stranger, and gets you the reviews a homeowner needs before handing you a driveway.</div>
+        </details>
       </div>
       <div class="phase">
-        <span class="ph">Phase 2 · Weeks 2–4 — The website</span>
-        <h3>Make a $10k job feel safe to hand you</h3>
-        <ul>
-          <li><strong>A sharp concrete-specialist site:</strong> <span class="muted">your best pours, before/afters, testimonials, service area (Oakland → SF), click-to-call, and a simple quote form. Built to convert, not a template.</span></li>
-        </ul>
+        <span class="ph">Phase 2 · Weeks 2–4</span>
+        <h3>A site that makes a $10k job feel safe</h3>
+        <details class="d">
+          <summary><span class="s-t">Build your concrete-specialist website</span><span class="owner">AraBuilds</span></summary>
+          <div class="dd">A sharp specialist site: your best pours, before/afters, reviews, your service towns (Berkeley, Walnut Creek, Benicia, Tiburon), click-to-call, and a simple quote form. Built to convert, not a template.</div>
+        </details>
       </div>
       <div class="phase">
-        <span class="ph">Phase 3 · Ongoing — Leads, pricing &amp; keeping it running</span>
-        <h3>The part I run for you</h3>
-        <ul>
-          <li><strong>Local SEO + lead generation</strong> <span class="muted">aimed at Oakland–SF flatwork buyers. Quality over volume.</span></li>
-          <li><strong>Pricing &amp; a job filter</strong> <span class="muted">— together we'd nudge your minimum up off $500 and define your ideal job: $8k+ flatwork, Oakland–SF, driveways / patios / foundations / retaining walls — so it's easier to pass on the rest. (Helps with "knowing which jobs to accept.")</span></li>
-          <li><strong>Simple lead tracking + a follow-up rhythm</strong> <span class="muted">so nothing slips — part of why your close rate sits at 10–25% today.</span></li>
-          <li><strong>I manage it monthly:</strong> <span class="muted">Google, reviews, site, leads, tracking. Your job stays simple — do great work and send me photos + happy-customer numbers.</span></li>
-        </ul>
+        <span class="ph">Phase 3 · Ongoing</span>
+        <h3>Leads, pricing &amp; keeping it running</h3>
+        <details class="d">
+          <summary><span class="s-t">Local SEO + lead generation</span><span class="owner">AraBuilds</span></summary>
+          <div class="dd">Aimed at high-ticket concrete buyers in your best towns — Berkeley, Walnut Creek, Benicia, Tiburon. Quality over volume: a few good jobs, not a flood.</div>
+        </details>
+        <details class="d">
+          <summary><span class="s-t">Pricing &amp; a job filter</span><span class="owner both">Together</span></summary>
+          <div class="dd">We set your minimum and define your ideal job — the higher-ticket work you're best at: foundations, retaining walls with drainage, bigger flatwork, $8k+ in your best towns — so it's easier to pass on the rest.</div>
+        </details>
+        <details class="d">
+          <summary><span class="s-t">A tracked business line + follow-up</span><span class="owner">AraBuilds</span></summary>
+          <div class="dd">Your number on Google and the site is a dedicated line that rings your cell — every call and text logged. We see exactly which jobs came from your new setup, and nothing slips between a quote and a booked job.</div>
+        </details>
+        <details class="d">
+          <summary><span class="s-t">Monthly management — hands-off for you</span><span class="owner">AraBuilds</span></summary>
+          <div class="dd">I run Google, reviews, the site, leads, and tracking every month. Your job stays simple: do great work and send me photos.</div>
+        </details>
       </div>
     </div>
   </section>
@@ -382,23 +291,30 @@ function plan() {
   <section>
     <span class="label">what success looks like</span>
     <h2>3–4 good jobs a month, built on proof</h2>
-    <p>3–4 booked flatwork jobs a month at your real prices lands you in your $10–25k target — comfortably inside your crew's capacity. And it's all built on real proof, so you never feel like you're risking your credibility. <span class="muted">That was your biggest worry; this plan is designed around it.</span></p>
+    <p>3–4 booked jobs a month that are your own, at your real prices, lands you in your $10–25k target — and with your family bench, the crew scales as the work grows. It's all built on real proof and a real license, so you're never risking your name on work you can't stand behind. <span class="muted">That's the whole point: a business that's yours, not borrowed.</span></p>
+  </section>
+
+  <section>
+    <span class="label">how we work together</span>
+    <h2>You pay nothing up front. I only win when you do.</h2>
+    <p>You asked what's in it for each of us — fair question. Straight answer: <strong>nothing out of your pocket to start.</strong> I build the license help, the Google profile, the site, and the lead engine, and I only earn once it's actually putting paying jobs in your hands. Once it's working, we land on whatever feels fair — a simple monthly to run it, or a small share of the jobs that close through the site. No lock-in, no surprises. <span class="muted">My incentive is to make you money, because that's the only way I make any. Same team.</span></p>
   </section>
 
   <section>
     <div class="firstmove">
       <span class="label">start here</span>
-      <h2>If you're in, a great first step</h2>
-      <p>Whenever you're ready, send me three things and I'll get your Google profile live and reviews coming in while we shape the rest together:</p>
+      <p style="font-size:17px">Whenever you're ready, give me the green light and I'll start your license paperwork and get your Google profile live while we shape the rest together. To kick it off, send me a few things — drop what you can in our shared folder:</p>
       <ol>
-        <li>The <strong>name</strong> you want to go with.</li>
         <li>Your best <strong>15–20 job photos</strong> (before/afters especially).</li>
-        <li>Phone numbers of <strong>15 past happy customers</strong>.</li>
+        <li>The <strong>exact registered name</strong> of the business (Pacific West Concrete, or "&amp; Landscaping"?), whether it's a sole prop / DBA / LLC, and a photo of any registration paperwork — so everything points to one clean, legal business.</li>
+        <li>Your <strong>cell number, email, and hours</strong> — I'll set you up with a dedicated business line that rings your phone, so customers reach you the same as always and every lead gets tracked.</li>
+        <li>Any <strong>logo or branding</strong> you already have (no worries if not — we'll make you one).</li>
+        <li>A <strong>website or two whose look you love</strong> (any trade, anywhere) — your north star for how yours should feel.</li>
       </ol>
       <div class="ctas">
-        <a class="cta" href="sms:+15106942210">Text me the details →</a>
-        <a class="cta ghost" href="tel:+15106942210">Call AraBuilds</a>
+        <a class="cta" href="${INTAKE_LINK}" target="_blank" rel="noopener">Open the shared folder →</a>
       </div>
+      <p style="margin-top:16px;color:var(--muted)">Questions, comments, or changes first? <a href="tel:+15106942210" style="color:var(--accent);font-weight:600">Give me a call</a>.</p>
     </div>
   </section>
 

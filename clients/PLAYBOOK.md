@@ -44,8 +44,12 @@ How that shows up in the copy, in order:
 - **Brand accuracy is non-negotiable.** Use the client's *own* brand, never their employer/
   brokerage. (Auguste's brand is "Auguste Realtor / auguste-realtor.com"; All East Bay
   Properties is just the brokerage he's licensed under — do NOT present it as his brand.)
-- **CTA: minimal.** One clear primary action. No stacked buttons / extraneous verbiage. A quiet
-  fallback line is fine ("Questions, comments, or changes first? *Give me a call*" → `tel:`).
+- **CTA: minimal — follow the Auguste formula** (canonical: [`functions/auguste.js`](../functions/auguste.js)
+  `firstmove` block). Exact structure, in order: (1) a prominent green-light line as the header —
+  `<p style="font-size:17px">` (no `<h2>`), asking for the go-ahead and pointing to the shared folder;
+  (2) a short `<ol>` of the assets to drop in; (3) **one** primary `.cta` → `INTAKE_LINK`
+  (`target="_blank" rel="noopener"`), no second button; (4) a quiet muted fallback line
+  ("Questions, comments, or changes first? *Give me a call*" → `tel:`). No stacked buttons.
 - **Asset intake = one shared Google Drive folder**, wired through a single `INTAKE_LINK`
   constant at the top of the file (easy to swap). Open in a new tab (`target="_blank" rel="noopener"`).
 - **Explicitly ask for the green light** to start building, near the CTA.
