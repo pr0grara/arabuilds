@@ -29,6 +29,12 @@ How that shows up in the copy, in order:
 5. **Tone:** warm, plain, "a starting point, not a verdict — tell me where I've got it wrong."
    Invite pushback. It's a conversation, not a pitch deck.
 
+## Discovery defaults — bake these into every call-prep
+Standing items to include in every client's pre-call `callGuide()` questions **and** to raise on the call itself:
+- **Ask how they want to communicate & share files.** Don't assume Google Drive / Docs — for contractors and other non-desk folks it can be alien. Offer the path of least friction: text, email, photos straight to the phone. Match the intake channel to the person, then wire `INTAKE_LINK` (or a fallback) to whatever they'll actually use.
+- **Read the person, not just the business — find what makes them tick.** Their real motivation drives both the page and the relationship (Pili: "go to the top," integrity, the family trade). Always be probing for it and build around it.
+- **Set prototype expectations up front.** Tell them the first version of the site may look rough or a little off — *on purpose*. It's a fast, cheap draft to react to, not the finished product. Reshaping a rough draft is far cheaper than rebuilding a polished one, so we move quick, get their structural feedback, then refine. This frames "rough first cut" as method, not sloppiness.
+
 ## Page structure (sections, top to bottom)
 - **Gate** (`gate()`) — styled password screen, not Basic Auth.
 - **Internal call-prep block** (`callGuide()`) — orange dashed box, **removed before sending**.
@@ -57,6 +63,7 @@ How that shows up in the copy, in order:
 - **Niche positioning beats generalist.** Find the one lane the client can own (Auguste →
   "the Emeryville condo specialist") and build the whole page around it; widen out from there.
 - **Sold-work / proof is the top seller-conversion asset** — give it its own phase.
+- **Don't over-invest in the first prototype site.** A heavily-polished v1 is expensive to throw away when the client wants a structural change — the more hours sunk, the harder it is to restart. Build a rough first cut fast, expect to rebuild, and set that expectation in discovery (see *Discovery defaults*).
 
 ## Technical gotchas
 - **Dark-mode Plan Spec card.** The `.titleblock` uses `var(--navy)` for its header-bar
