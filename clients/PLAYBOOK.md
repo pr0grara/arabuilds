@@ -43,10 +43,19 @@ Standing items to include in every client's pre-call `callGuide()` questions **a
   Pili's is kept while still pre-call.) Don't remove a client's call-prep unless they're past it.
 - **`doc-head`** — logo, mono `label`, big `doc-title` with one `.accent` word, `doc-sub`, and the
   **Plan Spec** `titleblock`.
-- **the read** → **the reframe** → **the roadmap** (phased `.phase` cards) → **what success looks
-  like** → **start here** (`firstmove` CTA) → **footer**.
+- **my evaluation** → **the strategy** → **the roadmap** (phased `.phase` cards) → **what success
+  looks like** → **start here** (`firstmove` CTA) → **footer**. (Section labels are fixed: use
+  "my evaluation" and "the strategy" — *not* the older "the read" / "the reframe".)
+- **Roadmap = collapsible `<details class="d">` dropdowns, not always-open bullet lists.** Each step
+  is a one-line `summary` + an **owner tag** (`AraBuilds` / `you` / `.owner.both` "Together"); the
+  `.dd` detail opens on click. Keeps the page short and scannable — detail on demand. Canonical CSS
+  + markup in both [`functions/pili.js`](../functions/pili.js) and [`functions/auguste.js`](../functions/auguste.js).
+  Add the helper line under the roadmap `h2`: "Open any step for the how. The tag shows who drives it."
 
 ## Preferences / lessons learned
+- **Shorter, more concise plans — default to brevity.** The plan should read fast: tight prose, no
+  filler, and the roadmap collapsed into dropdowns (above) so the page is short on first view with
+  detail one tap away. When in doubt, cut. A client skims first; reward the skim.
 - **Brand accuracy is non-negotiable.** Use the client's *own* brand, never their employer/
   brokerage. (Auguste's brand is "Auguste Realtor / auguste-realtor.com"; All East Bay
   Properties is just the brokerage he's licensed under — do NOT present it as his brand.)
