@@ -15,6 +15,9 @@
 ## The play (one line)
 Reposition him as **the Emeryville condo specialist**, prove it with his ~60 sold deals + a Recently Sold showcase, add live IDX search, and capture seller/buyer leads — keeping his brand, domain, and the paid funnel that already works.
 
+## His own idea — the condo directory (build on this)
+Auguste already built a **building-by-building Emeryville condo directory** (~17 buildings / ~3,300 homes, with HOA/parking/views/sale data) — live at [auguste-realtor.pages.dev/condos](https://auguste-realtor.pages.dev/condos), the main navbar CTA. Fantastic instinct (buyers shop one building at a time). The plan now makes this the **centerpiece** of the niche/SEO play: each building its own rankable page, wired to lead capture. Credited as his idea in the plan.
+
 ## Niche / geography (his priority order)
 1. **Condos in Emeryville** — primary, the hero of the whole site
 2. Condos in **neighboring cities** — secondary
@@ -32,7 +35,7 @@ Reposition him as **the Emeryville condo specialist**, prove it with his ~60 sol
 - [ ] Build the real site on auguste-realtor.com
 
 ## Open items — resolved
-1. **IDX price:** give him a ballpark — **~$50–110/mo** vendor fee on top of MLS (iHomeFinder / IDX Broker / Showcase IDX class).
+1. **IDX price:** **~$160/mo** vendor fee on top of MLS + **one-time ~$200 setup** (per Auguste's quote; consistent with iHomeFinder-class agent pricing — IDX Broker/Showcase run lower, ~$80–125/mo, if we want cheaper). Earlier ~$50–110 estimate was too low.
 2. **Recently Sold source:** **both** — curated gallery of his ~60 + IDX-pulled MLS sold.
 3. **Engagement:** **monthly = yes** (he agreed to ongoing SEO updates).
 4. **LSAs:** keeps the ads running for now.
