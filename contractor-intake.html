@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tradesman Intake — AraBuilds</title>
-<meta name="description" content="Tell me where your trade business is today — your stage, services, service area, current leads, and what's holding you back — and I'll find your first move.">
+<meta name="description" content="Tell me where your trade business is today: your stage, services, service area, current leads, and what's holding you back. I'll find your first move.">
 <meta name="theme-color" content="#0b0c0a">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://arabuilds.com/contractor-intake">
@@ -55,10 +55,16 @@
 
   .process{margin-top:30px;padding:22px clamp(16px,4vw,26px);border:1px dashed var(--line);border-radius:3px}
   .process .label{margin-bottom:16px}
-  .process ol{list-style:none;counter-reset:step;display:grid;gap:12px}
-  .process li{counter-increment:step;padding-left:34px;position:relative;color:var(--dim);max-width:64ch}
-  .process li::before{content:counter(step);position:absolute;left:0;top:0;width:22px;height:22px;border:1px solid var(--accent);color:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px}
-  .process li b{color:var(--fg);font-weight:600}
+  .process ol{list-style:none;counter-reset:step;display:grid;gap:2px}
+  .process li{counter-increment:step;padding-left:34px;position:relative;max-width:64ch}
+  .process li::before{content:counter(step);position:absolute;left:0;top:6px;width:22px;height:22px;border:1px solid var(--accent);color:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px}
+  .process summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:6px 0;color:var(--fg)}
+  .process summary::-webkit-details-marker{display:none}
+  .process summary b{font-weight:600}
+  .process summary::after{content:"+";margin-left:auto;color:var(--accent);font-size:16px;line-height:1;opacity:.5;transition:opacity .15s;flex:none}
+  .process summary:hover::after{opacity:1}
+  .process details[open] summary::after{content:"–"}
+  .process .d{padding:0 0 10px;color:var(--dim);max-width:60ch}
 
   .label{color:var(--dim);font-size:12px;letter-spacing:2px;text-transform:uppercase}
   .label::before{content:"// "}
@@ -132,15 +138,27 @@
   <header>
     <!-- <div class="prompt">ara@builds:~$ <b>./intake --trade</b></div> -->
     <h1 class="brand">Tradesman<span class="accent"> Intake</span></h1>
-    <p class="intro">This intake helps me understand where you are today, what kind of jobs you want more of, and what is holding you back. <span class="dim">The goal is to find our "first actions", then lowest hanging fruit and finally carve out your long term plan.</span></p>
+    <p class="intro">This intake helps me understand where you're at, so I can help you with a plan.</p>
 
     <div class="process">
-      <div class="label">how arabuilds works</div>
+      <div class="label">how i work</div>
       <ol>
-        <li><b>Understand the business</b> — trade, service area, capacity, proof, current leads, and goals.</li>
-        <li><b>Identify the bottleneck</b> — legitimacy, visibility, conversion, operations, or capacity.</li>
-        <li><b>Build the plan</b> — website, Google profile, SEO, reviews, tracking, workflow, or lead systems.</li>
-        <li><b>Execute and improve</b> — launch, track results, refine the offer, and improve lead quality.</li>
+        <li><details>
+          <summary><b>Understand the business</b></summary>
+          <div class="d">Trade, service area, capacity, proof, current leads, and goals.</div>
+        </details></li>
+        <li><details>
+          <summary><b>Identify the challenges</b></summary>
+          <div class="d">Legitimacy, visibility, conversion, operations, or capacity.</div>
+        </details></li>
+        <li><details>
+          <summary><b>Build the plan</b></summary>
+          <div class="d">Website, Google profile, SEO, reviews, tracking, workflow, or lead systems.</div>
+        </details></li>
+        <li><details>
+          <summary><b>Execute and improve</b></summary>
+          <div class="d">Launch, track results, refine the offer, and improve lead quality.</div>
+        </details></li>
       </ol>
     </div>
   </header>
@@ -152,6 +170,8 @@
     <input type="hidden" name="classification_reasons" id="classification_reasons">
     <!-- honeypot: bots fill this, humans never see it -->
     <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+
+    <p class="form-note" style="margin-bottom:4px">Only the fields marked <span style="color:var(--accent)">*</span> are required. Everything else is optional.</p>
 
     <!-- SECTION 1 -->
     <fieldset>
@@ -215,23 +235,19 @@
       <legend><span class="label leg-num">section 02</span><span class="leg-title">Services and Specialty</span></legend>
       <div class="field full" style="margin-top:24px">
         <label class="q">What services do you currently offer?</label>
-        <span class="help" id="servicesHint">Pick all that apply. Options match your main trade — set that in Section 1 to refine this list. Add anything we missed below.</span>
+        <span class="help" id="servicesHint">Pick all that apply. Options match your main trade, so set that in Section 1 to refine this list. Add anything I missed below.</span>
         <div class="checks" id="servicesChecks" data-group="services_offered"></div>
       </div>
       <div class="grid">
         <div class="field full" style="margin-top:4px">
           <label class="q" for="services_other">Other services not listed</label>
-          <input id="services_other" name="services_other" type="text" placeholder="Separate with commas — e.g. epoxy floors, pressure washing">
+          <input id="services_other" name="services_other" type="text" placeholder="Separate with commas, e.g. epoxy floors, pressure washing">
         </div>
       </div>
       <div class="grid two">
-        <div class="field">
-          <label class="q" for="want_more">What services do you want more of?</label>
+        <div class="field full">
+          <label class="q" for="want_more">What work do you want more of, and what do you want to steer away from?</label>
           <textarea id="want_more" name="services_want_more"></textarea>
-        </div>
-        <div class="field">
-          <label class="q" for="want_less">What services do you want less of or want to avoid?</label>
-          <textarea id="want_less" name="services_want_less"></textarea>
         </div>
         <div class="field full">
           <label class="q" for="ideal_job">What is your ideal job?</label>
@@ -484,6 +500,11 @@
           <label class="opt"><input type="checkbox" name="proof" value="Other"><span>Other</span></label>
         </div>
       </div>
+      <div class="field full" style="margin-top:20px">
+        <label class="q" for="north_star">Any websites or businesses whose look or setup you admire?</label>
+        <span class="help">Any trade, anywhere. Even one example tells me a lot about the feel you're after.</span>
+        <textarea id="north_star" name="design_north_star" placeholder="Links or names, however rough."></textarea>
+      </div>
     </fieldset>
 
     <!-- SECTION 7 -->
@@ -589,7 +610,7 @@
 
     <!-- SECTION 9 -->
     <fieldset>
-      <legend><span class="label leg-num">section 09</span><span class="leg-title">AraBuilds Fit</span></legend>
+      <legend><span class="label leg-num">section 09</span><span class="leg-title">My Scope</span></legend>
       <div class="field full" style="margin-top:24px">
         <label class="q">Which type of help are you most interested in?</label>
         <div class="checks">
@@ -610,7 +631,7 @@
       </div>
       <div class="grid two">
         <div class="field full">
-          <label class="q" for="involvement">How involved do you want AraBuilds to be?</label>
+          <label class="q" for="involvement">How involved do you want me to be?</label>
           <select id="involvement" name="involvement_level">
             <option value="" disabled selected>Select…</option>
             <option>One-time setup</option>
@@ -620,8 +641,28 @@
             <option>Not sure yet</option>
           </select>
         </div>
+        <div class="field">
+          <label class="q">Best way to reach you?</label>
+          <span class="help">However you actually like to talk.</span>
+          <div class="checks">
+            <label class="opt"><input type="checkbox" name="contact_pref" value="Call"><span>Call</span></label>
+            <label class="opt"><input type="checkbox" name="contact_pref" value="Text"><span>Text</span></label>
+            <label class="opt"><input type="checkbox" name="contact_pref" value="Email"><span>Email</span></label>
+            <label class="opt"><input type="checkbox" name="contact_pref" value="WhatsApp"><span>WhatsApp</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label class="q" for="share_pref">Easiest way to share photos and files?</label>
+          <select id="share_pref" name="share_pref">
+            <option value="" disabled selected>Select…</option>
+            <option>Text them to my phone</option>
+            <option>Email</option>
+            <option>Google Drive / Dropbox</option>
+            <option>Not sure — you tell me</option>
+          </select>
+        </div>
         <div class="field full">
-          <label class="q" for="anything">Anything else we should know before talking?</label>
+          <label class="q" for="anything">Anything else I should know before talking?</label>
           <textarea id="anything" name="anything_else"></textarea>
         </div>
       </div>
@@ -630,14 +671,14 @@
     <div class="actions">
       <button type="submit" class="submit" id="submitBtn">Submit intake →</button>
       <p id="formError"></p>
-      <p class="form-note">Fields marked <span style="color:var(--accent)">*</span> are required. Everything else helps us prepare, but is optional. We use this only to follow up about your business — see our <a href="/privacy.html">privacy policy</a>.</p>
+      <p class="form-note">I use this only to follow up about your business. See the <a href="/privacy.html">privacy policy</a>.</p>
     </div>
   </form>
 
   <div id="done" aria-live="polite">
     <div class="prompt">ara@builds:~$ <b>intake --status</b></div>
     <p class="ok">✓ Intake received.</p>
-    <p>Thanks — your intake has been submitted. AraBuilds will review your business stage, service area, current lead flow, and growth bottlenecks before following up.</p>
+    <p>Thanks, your intake's in. I'll review your business stage, service area, current lead flow, and growth bottlenecks before following up.</p>
     <p class="dim">Want to talk sooner? Call <a href="tel:+15106942210">(510) 694-2210</a> or email <a href="mailto:azbaghda@gmail.com">azbaghda@gmail.com</a>.</p>
     <p class="dim" style="margin-top:18px"><a class="back" href="/">← back to arabuilds</a></p>
   </div>
@@ -701,17 +742,18 @@
     website:'Website', gbp_link:'Google Business Profile', main_trade:'Main trade',
     business_description:'Description', services_offered:'Services offered',
     services_other:'Other services (custom)',
-    services_want_more:'Wants more of', services_want_less:'Wants less of / avoid',
+    services_want_more:'Wants more of / steer away from',
     ideal_job:'Ideal job', min_job_size:'Minimum job size', area_current:'Areas currently served',
     area_target:'Target areas', travel_distance:'Travel distance', business_stage:'Business stage',
     licensed:'Licensed', insured:'Insured', crew_size:'Crew size', capacity_per_month:'Monthly capacity',
     lead_response_time:'Lead response time', lead_sources:'Lead sources', leads_per_month:'Leads / month',
     close_rate:'Close rate', lead_issues:'Lead issues', has_website:'Has website', has_gbp:'Has GBP',
     review_count:'Review count', has_photos:'Has work photos', has_before_after:'Before/after photos',
-    proof:'Trust proof', lead_tracking:'Lead tracking', estimate_method:'Estimate method',
+    proof:'Trust proof', design_north_star:'Look / sites admired', lead_tracking:'Lead tracking', estimate_method:'Estimate method',
     estimate_followup:'Estimate follow-up', slowdowns:'Operational slowdowns', main_goal:'Main goal',
     target_revenue:'Target revenue', success_definition:'Success looks like', worries:'Worries',
-    help_interest:'Help interested in', involvement_level:'Involvement level', anything_else:'Anything else',
+    help_interest:'Help interested in', involvement_level:'Involvement level',
+    contact_pref:'Preferred contact', share_pref:'File sharing', anything_else:'Anything else',
     classification:'CLASSIFICATION', classification_reasons:'Classification reasons'
   };
 
