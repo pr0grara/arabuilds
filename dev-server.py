@@ -31,7 +31,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         path = self.path.split("?", 1)[0].split("#", 1)[0]
 
         # Make it obvious that Functions don't run here.
-        if path == "/admin" or path == "/pili" or path == "/auguste" or path.startswith("/api/"):
+        if path == "/admin" or path == "/pili" or path == "/auguste" or path == "/ngoc" or path.startswith("/api/"):
             self.send_error(
                 501,
                 "Functions don't run in local dev",
