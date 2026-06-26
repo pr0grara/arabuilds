@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AraBuilds — websites & lead systems for tradesmen</title>
-<meta name="description" content="I turn your trade skill into a real business — website, Google presence, reviews, and lead tracking that keep steady jobs coming in. Built like a system, not a one-off. For tradesmen across the US.">
+<title>AraBuilds — web presence for local businesses</title>
+<meta name="description" content="I build the web presence that brings local businesses steady work: site, Google, reviews, and lead tracking, built like a system.">
 <meta name="theme-color" content="#0b0c0a">
-<meta property="og:title" content="AraBuilds — websites & lead systems for tradesmen">
-<meta property="og:description" content="You're good at the work. I make the business around it just as solid.">
+<meta property="og:title" content="AraBuilds — web presence for local businesses">
+<meta property="og:description" content="Get found. Look legit. Turn attention into booked work.">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://arabuilds.com/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='%231b2a47'/><text x='50' y='73' font-size='66' text-anchor='middle' fill='%232f7d52' font-family='Arial,sans-serif' font-weight='bold'>A</text></svg>">
@@ -43,44 +43,51 @@
 
   .wrap{max-width:760px;margin:0 auto;position:relative}
 
-  /* top-right route to the intake */
+  /* content views: only the active vertical shows */
+  .view{display:none}
+  body[data-view="trades"] .view-trades{display:block}
+  body[data-view="realty"] .view-realty{display:block}
+
+  /* ===== gate modal ===== */
+  .gate{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:clamp(20px,5vw,40px);background:rgba(15,18,22,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+  body[data-gate="open"] .gate{display:flex}
+  .gate-card{background:var(--paper);border:1.5px solid var(--navy);border-radius:12px;max-width:520px;width:100%;padding:clamp(26px,5vw,38px);box-shadow:0 24px 70px rgba(0,0,0,.28);animation:rise .22s ease}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.gate-card{animation:none}}
+  .gate-card .brand{font-size:clamp(30px,7vw,36px)}
+  .gate-doors{margin-top:26px;display:flex;flex-direction:column}
+  .gd{display:flex;align-items:center;gap:16px;padding:18px 0;border-top:1px solid var(--line);transition:.15s;cursor:pointer}
+  .gd:last-child{border-bottom:1px solid var(--line)}
+  .gd .text{flex:1;display:flex;flex-direction:column}
+  .gd .name{font-size:clamp(22px,5vw,28px);font-weight:800;color:var(--navy);letter-spacing:-.6px;line-height:1.05}
+  .gd .zing{color:var(--muted);font-size:14px;margin-top:6px}
+  .gd .arrow{font-family:var(--mono);color:var(--accent);font-size:18px;transition:transform .15s}
+  .gd:hover .name{color:var(--accent)}
+  .gd:hover .arrow{transform:translateX(5px)}
+
+  /* top route (intake) */
   .top-route{position:absolute;top:0;right:0;z-index:5;font-family:var(--mono);font-size:14px;color:var(--accent);display:inline-flex;align-items:center;gap:8px}
   .top-route:hover{color:var(--accent-dk)}
   .top-route .arrow{transition:transform .15s}
   .top-route:hover .arrow{transform:translateX(3px)}
 
-  /* mono spec label — the systems DNA, kept small */
+  /* mono spec label */
   .label{font-family:var(--mono);font-size:11.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);display:block}
   .label::before{content:"// "}
 
-  /* hero fills the first screen — copy is the whole landing */
+  /* hero */
   .hero{min-height:calc(100svh - clamp(48px,10vw,112px));display:flex;flex-direction:column;justify-content:center;position:relative}
   .hero .label{margin-bottom:22px}
   .brand{font-size:clamp(40px,9vw,44px);line-height:1;letter-spacing:-1.6px;color:var(--navy);font-weight:800}
   .brand b{color:var(--accent);font-weight:800}
+  .brand[data-gate-open]{cursor:pointer}
   .tag{margin-top:26px;font-size:clamp(21px,3.6vw,32px);color:var(--ink);max-width:24ch;line-height:1.42;font-weight:500}
   .tag .navy{color:var(--navy);font-weight:700}
-  .scroll-cue{position:absolute;left:0;bottom:4px;display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
-  .scroll-cue:hover{color:var(--accent)}
-  .scroll-cue .arrow{display:inline-block;animation:bob 1.7s ease-in-out infinite}
-  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
-  @media(prefers-reduced-motion:reduce){.scroll-cue .arrow{animation:none}}
   .ctas{margin-top:26px;display:flex;flex-wrap:wrap;gap:13px}
   .cta{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;padding:12px 20px;border-radius:5px;border:1.5px solid var(--accent);color:var(--accent);transition:.15s}
   .cta:hover{background:var(--accent);color:#fff}
   .cta.ghost{border-color:var(--line-2);color:var(--navy)}
   .cta.ghost:hover{border-color:var(--accent);color:var(--accent)}
-
-  /* drafting title block */
-  .titleblock{margin-top:34px;border:1.5px solid var(--navy);border-radius:6px;overflow:hidden;background:var(--panel);max-width:440px}
-  .tb-head{background:var(--navy);color:#fff;padding:10px 15px;display:flex;align-items:center;justify-content:space-between}
-  .tb-head .t{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;opacity:.85}
-  .tb-head .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-  .tb-row{display:grid;grid-template-columns:84px 1fr;gap:4px 14px;padding:11px 15px;border-bottom:1px dashed var(--line-2)}
-  .tb-row:last-child{border-bottom:none}
-  .tb-row dt{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);align-self:center}
-  .tb-row dd{font-weight:600;color:var(--navy);font-size:13.5px}
-  .tb-row dd.ok{color:var(--accent)}
 
   section{padding:clamp(30px,5.5vh,46px) 0;border-top:1px solid var(--line)}
   .sec-intro{max-width:60ch;margin-bottom:26px}
@@ -120,79 +127,212 @@
 <script src="/assets/theme.js" defer></script>
 </head>
 <body>
+
+<!-- ============ GATE ============ -->
+<div class="gate" role="dialog" aria-modal="true" aria-label="Choose what you do">
+  <div class="gate-card">
+    <span class="label">web presence for local businesses</span>
+    <h1 class="brand" style="margin-top:14px">Ara<b>Builds</b></h1>
+    <div class="gate-doors">
+      <a class="gd" href="#trades" data-pick="trades">
+        <span class="text">
+          <span class="name">Trades</span>
+          <span class="zing">Websites and lead systems for contractors and home services.</span>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="gd" href="#realty" data-pick="realty">
+        <span class="text">
+          <span class="name">Realty</span>
+          <span class="zing">Websites and lead systems for real estate agents.</span>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
 <main class="wrap">
 
-  <a class="top-route" href="/contractor-intake">Tradesman intake <span class="arrow">→</span></a>
+  <!-- ============ TRADES ============ -->
+  <div class="view view-trades">
+    <a class="top-route" href="/contractor-intake">Tradesman intake <span class="arrow">→</span></a>
 
-  <header class="hero">
-    <div>
-      <span class="label">websites &amp; lead systems for tradesmen</span>
-      <h1 class="brand">Ara<b>Builds</b></h1>
-      <p class="tag">You're good at the work. <span class="navy">I make the business around it just as solid</span> — website, Google presence, reviews, and lead tracking that keep steady jobs coming in.</p>
-    </div>
-  </header>
+    <header class="hero">
+      <div>
+        <span class="label">websites &amp; lead systems for tradesmen</span>
+        <h1 class="brand" data-gate-open title="AraBuilds">Ara<b>Builds</b></h1>
+        <p class="tag">You're good at the work. <span class="navy">I make the business around it just as solid.</span></p>
+      </div>
+    </header>
 
-  <section id="scope">
-    <div class="sec-intro">
-      <span class="label">what i build</span>
-      <h2>Get found. Look legit. Turn attention into booked jobs.</h2>
-      <!-- <p>You don't need all of it at once. We start with what moves the needle, then build out the rest.</p> -->
-    </div>
-    <div class="scope">
-      <div class="item"><span class="num">01</span><div><h3>Website</h3><p>A fast, sharp site that makes you look established and turns visitors into calls — not a template.</p></div></div>
-      <div class="item"><span class="num">02</span><div><h3>Google &amp; local search</h3><p>Get found by people searching for your trade nearby, and own your Google Business Profile.</p></div></div>
-      <div class="item"><span class="num">03</span><div><h3>Reviews</h3><p>A simple system that steadily earns 5-star reviews — the proof that wins you the next job.</p></div></div>
-      <div class="item"><span class="num">04</span><div><h3>Lead tracking</h3><p>Know where every job comes from, what it's worth, and follow up on time. Nothing slips.</p></div></div>
-      <div class="item"><span class="num">05</span><div><h3>Systems &amp; automation</h3><p>Capture, route, and answer leads automatically, so your phone turns into a steady pipeline.</p></div></div>
-      <div class="item"><span class="num">06</span><div><h3>A second set of eyes</h3><p>Sometimes that's all it takes to find some low hanging fruit.</p></div></div>
-    </div>
-  </section>
+    <section>
+      <div class="sec-intro">
+        <span class="label">what i build</span>
+        <h2>Get found. Look legit. Book the work.</h2>
+      </div>
+      <div class="scope">
+        <div class="item"><span class="num">01</span><div><h3>Website</h3><p>A fast, sharp site that makes you look established. Not a template.</p></div></div>
+        <div class="item"><span class="num">02</span><div><h3>Google &amp; local search</h3><p>Get found by people searching for your trade nearby, and own your Google Business Profile.</p></div></div>
+        <div class="item"><span class="num">03</span><div><h3>Reviews</h3><p>A simple system that steadily earns you 5-star reviews.</p></div></div>
+        <div class="item"><span class="num">04</span><div><h3>Lead tracking</h3><p>Know where every job comes from, what it's worth, and follow up on time. Nothing slips.</p></div></div>
+        <div class="item"><span class="num">05</span><div><h3>Systems &amp; automation</h3><p>Capture, route, and answer leads automatically.</p></div></div>
+        <div class="item"><span class="num">06</span><div><h3>A second set of eyes</h3><p>Sometimes that's all it takes to find some low hanging fruit.</p></div></div>
+      </div>
+    </section>
 
-  <section>
-    <div class="sec-intro">
-      <span class="label">how it works</span>
-      <h2>I run it like a job</h2>
-      <p>Same way you'd take on a build: walk the site, read the plans, build to spec, check the work.</p>
-    </div>
-    <div class="steps">
-      <div class="step"><h3>Assess</h3><p>Your trade, service area, capacity, current leads, and goals — the full picture.</p></div>
-      <div class="step"><h3>Plan</h3><p>Pin down what's actually holding you back, and where the quick wins are.</p></div>
-      <div class="step"><h3>Build</h3><p>Site, Google profile, reviews, tracking, and lead systems — to spec.</p></div>
-      <div class="step"><h3>Improve</h3><p>Launch, track what comes in, and keep sharpening the offer and lead quality.</p></div>
-    </div>
-  </section>
+    <section>
+      <div class="sec-intro">
+        <span class="label">how it works</span>
+        <h2>I run it like a job</h2>
+        <p>Same way you'd take on a build: walk the site, read the plans, build to spec, check the work.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Assess</h3><p>Your trade, service area, capacity, current leads, and goals. The full picture.</p></div>
+        <div class="step"><h3>Plan</h3><p>Pin down what's actually holding you back, and where the quick wins are.</p></div>
+        <div class="step"><h3>Build</h3><p>Site, Google profile, reviews, tracking, and lead systems. Built to spec.</p></div>
+        <div class="step"><h3>Improve</h3><p>Launch, track what comes in, and keep sharpening the offer and lead quality.</p></div>
+      </div>
+    </section>
 
-  <section>
-    <span class="label">recent work</span>
-    <p class="lead" style="margin-top:9px">Real sites, <span class="accent">built to book jobs.</span></p>
-    <p class="body-copy">A few trade businesses I've put online — pest control, garage doors, well &amp; pump, auto glass. Same playbook every time: get found, look legit, make it easy to call.</p>
-    <a class="cta ghost" href="/work">See the work →</a>
-  </section>
+    <section>
+      <span class="label">recent work</span>
+      <p class="lead" style="margin-top:9px">Real sites, <span class="accent">built to book jobs.</span></p>
+      <p class="body-copy">A few trade businesses I've put online: pest control, garage doors, well &amp; pump, auto glass.</p>
+      <a class="cta ghost" href="/work">See the work →</a>
+    </section>
 
-  <section id="contact">
-    <span class="label">start here</span>
-    <p class="lead" style="margin-top:9px">Tell me where you're at. <span class="accent">I'll tell you the first move.</span></p>
-    <p class="body-copy">The intake takes a few minutes. No pitch — I read it, figure out your bottleneck, and follow up with a real next step.</p>
-    <div class="ctas">
-      <a class="cta" href="/contractor-intake">Start your intake →</a>
-    </div>
-    <div class="contact-row" style="margin-top:18px">
-      <a href="mailto:azbaghda@gmail.com?subject=Project%20inquiry%20%E2%80%94%20AraBuilds">✉ hello@arabuilds.com</a>
-      <a href="tel:+15106942210">☎ (510) 694-2210</a>
-    </div>
-  </section>
+    <section>
+      <span class="label">start here</span>
+      <p class="lead" style="margin-top:9px">Tell me where you're at. <span class="accent">I'll tell you the first move.</span></p>
+      <p class="body-copy">Takes a few minutes. I read it, figure out what's holding you back, and follow up with where to start.</p>
+      <div class="ctas">
+        <a class="cta" href="/contractor-intake">Start your intake →</a>
+      </div>
+      <div class="contact-row" style="margin-top:18px">
+        <a href="mailto:azbaghda@gmail.com?subject=Project%20inquiry%20%E2%80%94%20AraBuilds">✉ hello@arabuilds.com</a>
+        <a href="tel:+15106942210">☎ (510) 694-2210</a>
+      </div>
+    </section>
 
-  <footer>
-    <span>© <span id="yr">2026</span> AraBuilds. All rights reserved.</span>
-    <nav>
-      <a href="/work">Work</a>
-      <a href="/contractor-intake">Tradesman intake</a>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
-    </nav>
-  </footer>
+    <footer>
+      <span>© <span class="yr">2026</span> AraBuilds. All rights reserved.</span>
+      <nav>
+        <a href="/work">Work</a>
+        <a href="/contractor-intake">Tradesman intake</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+      </nav>
+    </footer>
+  </div>
+
+  <!-- ============ REALTY ============ -->
+  <div class="view view-realty">
+    <header class="hero">
+      <div>
+        <span class="label">web presence for real estate agents</span>
+        <h1 class="brand" data-gate-open title="AraBuilds">Ara<b>Builds</b></h1>
+        <p class="tag">You sell the home. <span class="navy">I make sure they find you first.</span></p>
+      </div>
+    </header>
+
+    <section>
+      <div class="sec-intro">
+        <span class="label">what i build</span>
+        <h2>Get found. Look like the agent to call.</h2>
+      </div>
+      <div class="scope">
+        <div class="item"><span class="num">01</span><div><h3>Your site</h3><p>A sharp personal-brand site, not another headshot on a brokerage page.</p></div></div>
+        <div class="item"><span class="num">02</span><div><h3>Google &amp; local search</h3><p>Get found when people search your name and your farm area, and own your Google Business Profile.</p></div></div>
+        <div class="item"><span class="num">03</span><div><h3>Reviews &amp; proof</h3><p>A simple system that steadily earns 5-star reviews.</p></div></div>
+        <div class="item"><span class="num">04</span><div><h3>Lead tracking</h3><p>Know where every lead comes from, what it's worth, and follow up on time. Nothing slips through.</p></div></div>
+        <div class="item"><span class="num">05</span><div><h3>Systems &amp; automation</h3><p>Capture, route, and answer inquiries automatically.</p></div></div>
+        <div class="item"><span class="num">06</span><div><h3>A second set of eyes</h3><p>Sometimes that's all it takes to find some low hanging fruit.</p></div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-intro">
+        <span class="label">how it works</span>
+        <h2>I run it like a listing</h2>
+        <p>Same care you'd give a seller: assess the property, price the strategy, get it market-ready, then work it.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Assess</h3><p>Your market, farm area, price points, current leads, and goals. The full picture.</p></div>
+        <div class="step"><h3>Plan</h3><p>Pin down what's actually holding you back, and where the quick wins are.</p></div>
+        <div class="step"><h3>Build</h3><p>Site, Google profile, reviews, tracking, and lead systems. Built to spec.</p></div>
+        <div class="step"><h3>Improve</h3><p>Launch, track what comes in, and keep sharpening the offer and lead quality.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <span class="label">start here</span>
+      <p class="lead" style="margin-top:9px">Tell me where you're at. <span class="accent">I'll tell you the first move.</span></p>
+      <p class="body-copy">Send me a line about your market and where leads come from now. I'll read it, figure out what's holding you back, and follow up with where to start.</p>
+      <div class="contact-row">
+        <a href="mailto:azbaghda@gmail.com?subject=Real%20estate%20web%20presence%20%E2%80%94%20AraBuilds">✉ hello@arabuilds.com</a>
+        <a href="tel:+15106942210">☎ (510) 694-2210</a>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span class="yr">2026</span> AraBuilds. All rights reserved.</span>
+      <nav>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+      </nav>
+    </footer>
+  </div>
 
 </main>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+  (function(){
+    var YEAR = new Date().getFullYear();
+    Array.prototype.forEach.call(document.querySelectorAll('.yr'), function(el){ el.textContent = YEAR; });
+
+    var body = document.body;
+    function fromHash(){ return (location.hash || '').replace('#','').toLowerCase(); }
+    function valid(v){ return v === 'trades' || v === 'realty'; }
+
+    function enter(v, scroll){
+      if(!valid(v)) return;
+      body.setAttribute('data-view', v);
+      body.removeAttribute('data-gate');
+      try{ localStorage.setItem('vertical', v); }catch(e){}
+      if(scroll !== false) window.scrollTo(0, 0);
+    }
+    function openGate(){ body.setAttribute('data-gate','open'); }
+    function closeGate(){
+      // only dismissable once a world is already chosen
+      if(body.getAttribute('data-view')) body.removeAttribute('data-gate');
+    }
+
+    // pick from the gate
+    Array.prototype.forEach.call(document.querySelectorAll('[data-pick]'), function(el){
+      el.addEventListener('click', function(e){ e.preventDefault(); enter(el.getAttribute('data-pick')); });
+    });
+    // the logo quietly reopens the gate (the only path back)
+    Array.prototype.forEach.call(document.querySelectorAll('[data-gate-open]'), function(el){
+      el.addEventListener('click', openGate);
+    });
+    // dismiss gate by backdrop click or Esc (only when a world exists)
+    document.querySelector('.gate').addEventListener('click', function(e){ if(e.target === this) closeGate(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeGate(); });
+
+    window.addEventListener('hashchange', function(){
+      var h = fromHash();
+      if(valid(h)) enter(h);
+    });
+
+    // initial: deep-link hash wins, then remembered world, else the gate
+    var h = fromHash();
+    if(valid(h)){ enter(h, false); }
+    else {
+      var saved; try{ saved = localStorage.getItem('vertical'); }catch(e){}
+      if(valid(saved)) enter(saved, false);
+      else openGate();
+    }
+  })();
+</script>
 </body>
 </html>
