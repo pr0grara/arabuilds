@@ -169,12 +169,12 @@ function gate(error) {
   <div class="gate">
     <a class="logo" href="/"><span class="mark">A</span>Ara<b>Builds</b></a>
     <h1>This plan is private</h1>
-    <p>Auguste — enter the password I gave you to open your website plan.</p>
+    <p>Hey Auguste. Enter the password I gave you to open your website plan.</p>
     <form method="post" action="/auguste">
       <input type="password" name="pw" placeholder="password" autofocus autocomplete="current-password" aria-label="Password">
       <button type="submit">Open plan →</button>
     </form>
-    <div class="err">${error ? 'Wrong password — try again.' : ''}</div>
+    <div class="err">${error ? 'Wrong password. Try again.' : ''}</div>
   </div>` + foot;
 }
 
@@ -184,7 +184,7 @@ function plan() {
     <a class="logo" href="/"><span class="mark">A</span>Ara<b>Builds</b></a>
     <span class="label" style="margin-top:22px">website plan · prepared for auguste</span>
     <h1 class="doc-title">The Emeryville <span class="accent">condo specialist.</span></h1>
-    <p class="doc-sub">Here's how I'd turn your site from a nice business card into the place every Emeryville condo buyer and seller lands first — and how we put the 60 deals you've already closed to work winning the next ones. A starting point, not a verdict: tell me where I've got it wrong.</p>
+    <p class="doc-sub">Here's how I'd turn your site from a nice business card into the first place every Emeryville condo buyer and seller lands, and put the 60 deals you've already closed to work winning the next ones. None of this is set in stone, so tell me where I've got it wrong.</p>
 
     <aside class="titleblock" aria-label="Plan details">
       <div class="tb-head"><span class="t">Plan Spec</span><span class="dot"></span></div>
@@ -201,39 +201,39 @@ function plan() {
   <section>
     <span class="label">my evaluation</span>
     <h2>Your funnel already works. The website is the weak link.</h2>
-    <p>This is the part most agents never get right and you already have: your paid Google ads bring in leads at <strong>~$80 each and you close about half of them.</strong> That's a fantastic number. On top of that, the property-management portfolio feeds you listings, and you've personally closed <strong>around 60 properties</strong>. The lead math and the track record are both real. <span class="muted">You're not short on skill or on leads that convert.</span></p>
-    <p>The gap is what happens <strong>after</strong> someone hears your name or clicks your ad and looks you up. They land on a five-page Wix brochure that doesn't say "Emeryville condo specialist," doesn't show the 60 homes you've sold, can't search listings, and can't capture them if they're not ready to book a call right that second. <span class="muted">You're paying to send people to a site that undersells you and lets the not-quite-ready ones slip away.</span></p>
-    <div class="callout"><b>The job of the new site:</b> make your paid leads close even better, and start pulling in <b>free</b> ones from search — built on proof you already have. Push back anywhere this doesn't fit.</div>
+    <p>Here's the part most agents never get right and you already have: your Google ads bring in leads at <strong>~$80 each and you close about half of them.</strong> That's a fantastic number. The property-management portfolio feeds you listings on top of that, and you've personally closed <strong>around 60 homes</strong>. <span class="muted">You're not short on skill or on leads that convert.</span></p>
+    <p>The gap is what happens <strong>after</strong> someone looks you up. They land on a five-page Wix brochure that doesn't say "Emeryville condo specialist," doesn't show the 60 homes you've sold, can't search listings, and can't capture anyone who isn't ready to book a call that second. <span class="muted">You're paying to send people to a site that undersells you and lets the not-quite-ready ones slip away.</span></p>
+    <div class="callout"><b>The job of the new site:</b> close your paid leads even better, and start pulling in <b>free</b> ones from search. All built on proof you already have. Push back anywhere this doesn't fit.</div>
   </section>
 
   <section>
     <span class="label">the strategy</span>
-    <h2>Don't be everyone's East Bay agent. Be <em>the</em> Emeryville condo agent.</h2>
-    <p>"East Bay realtor" puts you against hundreds of generalists. <strong>"Emeryville condos"</strong> is a niche you can actually own — and you already do the work. When you're the obvious specialist, three things happen: you can rank #1 for the searches that matter, sellers pick you because <strong>specialists win listings</strong>, and everything we publish compounds instead of getting lost in the noise.</p>
-    <p>So the site leads with Emeryville condos, then widens out the way your business does — <strong>condos in the neighboring cities</strong>, and <strong>small multifamily</strong> in the same area (the kind you just sold through the PM company). One clear lane, then the adjacent ones.</p>
-    <div class="callout"><b>Where the SEO really pays:</b> instead of one generic "areas served" blurb, I build a custom, in-depth page for <b>each market you work</b> — Emeryville condos, then each neighboring city and small multifamily — each one engineered to rank for exactly what people there are Googling. Your current five-page site can't show up for any of those searches. A handful of these specialized pages can quietly out-earn the entire site you have today, pulling in leads around the clock that you never pay per click for. <span class="muted">That's the difference between renting attention and owning it.</span></div>
-    <div class="callout"><b>And you've already started building it.</b> Your Emeryville condo directory — every building in town, broken out one by one with HOA, parking, views, and real sale data — is exactly the right instinct: buyers shop one building at a time, and almost no agent gives them that. It's the niche made concrete, and the perfect free front door. <b>We make it the centerpiece</b> of the new site, get each building page ranking, and wire it to capture the buyers it pulls in.</div>
+    <h2>Be <em>the</em> Emeryville condo agent.</h2>
+    <p>"East Bay realtor" puts you against hundreds of generalists. <strong>"Emeryville condos"</strong> is a niche you can actually own, and you already do the work. Be the obvious specialist and three things happen: you rank #1 for the searches that matter, sellers pick you because <strong>specialists win listings</strong>, and everything we publish compounds instead of getting lost in the noise.</p>
+    <p>So the site leads with Emeryville condos, then widens the way your business does: <strong>condos in the neighboring cities</strong>, and <strong>small multifamily</strong> nearby (the kind you just sold through the PM company). One clear lane, then the adjacent ones.</p>
+    <div class="callout"><b>Where the SEO really pays:</b> instead of one generic "areas served" blurb, I build a custom, in-depth page for <b>each market you work</b>. Emeryville condos, then each neighboring city and small multifamily, each one built to rank for exactly what people there are Googling. Your five-page site can't show up for any of those searches. A handful of these pages can quietly out-earn your whole current site, pulling in leads around the clock you never pay per click for. <span class="muted">That's the difference between renting attention and owning it.</span></div>
+    <div class="callout"><b>And you've already started building it.</b> Your Emeryville condo directory is exactly the right instinct: every building in town, broken out one by one with HOA, parking, views, and real sale data. Buyers shop one building at a time, and almost no agent gives them that. <b>We make it the centerpiece</b> of the new site, get each building page ranking, and wire it to capture the buyers it pulls in.</div>
   </section>
 
   <section>
     <span class="label">the roadmap</span>
     <h2>How I'd build it</h2>
-    <p class="muted" style="margin:-2px 0 4px">Open any step for the how. The tag shows who drives it — <b style="color:var(--accent)">me</b>, <b style="color:var(--navy)">you</b>, or <b style="color:var(--accent)">together</b>.</p>
+    <p class="muted" style="margin:-2px 0 4px">Tap any step for details. The tag shows who drives it: <b style="color:var(--accent)">me</b>, <b style="color:var(--navy)">you</b>, or <b style="color:var(--accent)">together</b>.</p>
     <div class="phases">
       <div class="phase">
         <span class="ph">Phase 1 · Foundation &amp; the niche</span>
         <h3>A fast site that says "Emeryville condos" loud and clear</h3>
         <details class="d">
           <summary><span class="s-t">Rebuild on the look &amp; domain you like</span><span class="owner">AraBuilds</span></summary>
-          <div class="dd">Same auguste-realtor.com, in the clean, high-end style you pointed me to (the feel of timallenproperties.com) — with a real engine underneath instead of the Wix brochure.</div>
+          <div class="dd">Same auguste-realtor.com, in the clean high-end style you pointed me to (the feel of timallenproperties.com), with a real engine underneath instead of the Wix brochure.</div>
         </details>
         <details class="d">
           <summary><span class="s-t">Custom city pages, built to rank</span><span class="owner">AraBuilds</span></summary>
-          <div class="dd">A dedicated, in-depth page for each market: Emeryville condos first (targeting "Emeryville condos for sale," "Emeryville condo realtor"), then each neighboring city and small multifamily. Real organic presence your five-page site can't produce — and it keeps working long after the ad budget stops.</div>
+          <div class="dd">A dedicated, in-depth page for each market: Emeryville condos first (targeting "Emeryville condos for sale," "Emeryville condo realtor"), then each neighboring city and small multifamily. Real organic presence your five-page site can't produce, and it keeps working long after the ad budget stops.</div>
         </details>
         <details class="d">
           <summary><span class="s-t">Make your condo directory the centerpiece</span><span class="owner both">Together</span></summary>
-          <div class="dd">Your building-by-building Emeryville condo directory — all ~17 buildings (~3,300 homes) with HOA, parking, views, and real sale data — is a standout, and exactly how buyers actually shop. We fold it into the new site as the front door to the niche, give each building its own page built to rank ("[building] Emeryville condos for sale"), and wire the "get inside one before it hits Zillow" CTA to capture the buyers it brings in. I love this idea.</div>
+          <div class="dd">Your building-by-building directory, all ~17 buildings (~3,300 homes) with HOA, parking, views, and real sale data, is a standout and exactly how buyers actually shop. We fold it in as the front door to the niche, give each building its own page built to rank ("[building] Emeryville condos for sale"), and wire the "get inside one before it hits Zillow" CTA to capture the buyers it brings in. I love this idea.</div>
         </details>
         <details class="d">
           <summary><span class="s-t">Real-estate setup done right</span><span class="owner">AraBuilds</span></summary>
@@ -245,15 +245,15 @@ function plan() {
         </details>
       </div>
       <div class="phase">
-        <span class="ph">Phase 2 · Proof — put your 60 deals to work</span>
+        <span class="ph">Phase 2 · Proof: put your 60 deals to work</span>
         <h3>The single best thing for winning listings</h3>
         <details class="d">
           <summary><span class="s-t">A "Recently Sold" showcase</span><span class="owner both">Together</span></summary>
-          <div class="dd">The feature you liked on sashabayrealtor.com. Every closed sale with photo, price, and neighborhood. For a seller deciding who to trust with their condo, nothing beats a wall of homes you've already sold. You send the list; I build it.</div>
+          <div class="dd">The feature you liked on sashabayrealtor.com. Every closed sale with photo, price, and neighborhood. For a seller deciding who to trust with their condo, nothing beats a wall of homes you've already sold. You send the list, I build it.</div>
         </details>
         <details class="d">
           <summary><span class="s-t">Your reviews, front and center</span><span class="owner">AraBuilds</span></summary>
-          <div class="dd">You've got plenty; we feature them where they do the most work, not buried on one page.</div>
+          <div class="dd">You've got plenty, so we feature them where they do the most work instead of buried on one page.</div>
         </details>
         <details class="d">
           <summary><span class="s-t">The human story</span><span class="owner">AraBuilds</span></summary>
@@ -262,10 +262,10 @@ function plan() {
       </div>
       <div class="phase">
         <span class="ph">Phase 3 · Live search &amp; lead capture</span>
-        <h3>Make it a real destination — and stop losing visitors</h3>
+        <h3>Make it a real destination, and stop losing visitors</h3>
         <details class="d">
           <summary><span class="s-t">Live home search (IDX) on your site</span><span class="owner both">Together</span></summary>
-          <div class="dd">Real MLS listings, searchable, the same kind of setup sashabayrealtor.com uses. Buyers search on your site instead of leaving for Zillow, and sold comps show automatically. Budget about <strong>$160/month</strong> for the vendor (on top of your MLS) plus a <strong>one-time ~$200 setup</strong>; we pick the vendor together and I'll lock the exact number.</div>
+          <div class="dd">Real MLS listings, searchable, the same kind of setup sashabayrealtor.com uses. Buyers search on your site instead of leaving for Zillow, and sold comps show automatically. Budget about <strong>$160/month</strong> for the vendor (on top of your MLS) plus a <strong>one-time ~$200 setup</strong>. We pick the vendor together and I'll lock the exact number.</div>
         </details>
         <details class="d">
           <summary><span class="s-t">"What's my Emeryville condo worth?"</span><span class="owner">AraBuilds</span></summary>
@@ -285,7 +285,7 @@ function plan() {
         <h3>Lean less on paid over time</h3>
         <details class="d">
           <summary><span class="s-t">Deepen the directory + neighborhood guides</span><span class="owner">AraBuilds</span></summary>
-          <div class="dd">Build out from your condo directory — richer per-building pages and neighborhood/pocket guides buyers search by name. Each one is another free door into your site.</div>
+          <div class="dd">Build out from your condo directory: richer per-building pages and neighborhood/pocket guides buyers search by name. Each one is another free door into your site.</div>
         </details>
         <details class="d">
           <summary><span class="s-t">A small-multifamily / investor angle</span><span class="owner">AraBuilds</span></summary>
@@ -300,37 +300,31 @@ function plan() {
   </section>
 
   <section>
-    <span class="label">what success looks like</span>
-    <h2>The same great close rate — on <strong>your own</strong> leads</h2>
-    <p>You already turn ~half your $80 leads into deals. Put those clicks onto a site that screams "Emeryville condo specialist," backed by 60 sold homes and live search, and that number only gets better — while organic search quietly adds leads you didn't pay for. A couple of extra listings a year at 2.5–3% covers all of this many times over. <span class="muted">The goal: your reputation and your track record, finally working for you online.</span></p>
-  </section>
-
-  <section>
     <div class="firstmove">
       <span class="label">start here</span>
-      <p style="font-size:17px">Round one's already in — <b style="color:var(--accent)">bio, sold list, reviews, and MLS login: done.</b> Here's what's left to get us to launch — drop what you can in our shared folder:</p>
+      <p style="font-size:17px">Round one's already in: <b style="color:var(--accent)">bio, sold list, reviews, and MLS login, all done.</b> Here's what's left to get us to launch. Drop what you can into our shared folder:</p>
       <ul class="todo">
         <li class="done"><del>Your bio + a couple of professional photos.</del></li>
-        <li class="done"><del>Your list of sold properties — addresses + photos.</del></li>
+        <li class="done"><del>Your list of sold properties (addresses + photos).</del></li>
         <li class="done"><del>Favorite reviews.</del></li>
         <li class="done"><del>MLS login for the live search.</del></li>
-        <li><strong>HOA dues, verified — by launch.</strong> <span class="muted">Many building pages pull HOA from public records; some are off or blank, mostly buildings you haven't personally sold in. You know these better than any source — give them a quick once-over.</span></li>
-        <li><strong>Photos of the other buildings — by launch.</strong> <span class="muted">A licensing thing: I can only safely publish photos from your own seller-side listings. I'm filling the rest with free-licensed images, but your own phone shot of an Emeryville building beats stock every time. They're all within a few blocks — a 15-min walk on a clear day covers most. Let's do it together, could be fun. :)</span></li>
+        <li><strong>HOA dues, verified, by launch.</strong> <span class="muted">Some building pages pull HOA from public records, and a few are off or blank, mostly buildings you haven't sold in. You know these better than any source, so give them a quick once-over.</span></li>
+        <li><strong>Photos of the other buildings, by launch.</strong> <span class="muted">A licensing thing: I can only safely publish photos from your own seller-side listings. I'm filling the rest with free-licensed images, but your own phone shot beats stock every time. They're all within a few blocks, so a 15-min walk covers most. Let's do it together, could be fun. :)</span></li>
         <li><strong>5 sold homes still missing a photo.</strong> <span class="muted">Single homes / small multifamily with no building shot to fall back on: 3609 Adeline (Emeryville), 1054 63rd St (Oakland), 1505 32nd St (Oakland), 2709 Channing Way (Berkeley), 1929 California St (Berkeley).</span></li>
-        <li><strong>Interior photos, ideally.</strong> <span class="muted">I have none of these yet. I can fill some from what's free online (so far just one exterior shot per building), but expect real gaps if we play it safe on licensing.</span></li>
+        <li><strong>Interior photos, ideally.</strong> <span class="muted">I have none yet. I can fill some from what's free online, but expect real gaps if we play it safe on licensing.</span></li>
         <li><strong>Confirm the headline stats are current and good to publish:</strong> <span class="muted">$35M+ · 7 years · 60+ homes · 5.0★.</span></li>
         <li><strong>The landing video.</strong></li>
       </ul>
-      <p style="margin-top:14px;color:var(--muted)"><b style="color:var(--navy)">Optional, can wait:</b> a live home-finder tool like Sasha's needs an iHomeFinder subscription — <strong>$160/month + ~$200 one-time setup</strong>. We can hold off on this for now.</p>
+      <p style="margin-top:14px;color:var(--muted)"><b style="color:var(--navy)">Optional, can wait:</b> a live home-finder like Sasha's needs an iHomeFinder subscription, <strong>$160/month + ~$200 one-time setup</strong>. We can hold off for now.</p>
       <div class="ctas">
-        <a class="cta" href="${INTAKE_LINK}" target="_blank" rel="noopener">Open the shared folder →</a>
+        <a class="cta" href="${INTAKE_LINK}" target="_blank" rel="noopener">Open our shared folder →</a>
       </div>
-      <p style="margin-top:16px;color:var(--muted)">Questions, comments, or changes first? <a href="tel:+15106942210" style="color:var(--accent);font-weight:600">Give me a call</a>.</p>
+      <p style="margin-top:16px;color:var(--muted)">Got questions, or want to change something first? <a href="tel:+15106942210" style="color:var(--accent);font-weight:600">Give me a call</a>.</p>
     </div>
   </section>
 
   <footer>
-    <span>Prepared by AraBuilds for Auguste Vende — Auguste Realtor</span>
+    <span>Prepared by AraBuilds for Auguste Vende · Auguste Realtor</span>
     <a href="/">arabuilds.com</a>
   </footer>` + foot;
 }
