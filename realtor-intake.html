@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Real Estate Intake — AraBuilds</title>
+<meta name="description" content="Tell me where your real estate business is today: your focus, farm area, current leads, production, and what's holding you back. I'll find your first move.">
+<meta name="theme-color" content="#0b0c0a">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://arabuilds.com/realtor-intake">
+<meta property="og:title" content="Real Estate Intake — AraBuilds">
+<meta property="og:description" content="Tell me where you're at and what kind of business you want more of. I'll tell you the first move.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='%231b2a47'/><text x='50' y='73' font-size='66' text-anchor='middle' fill='%232f7d52' font-family='Arial,sans-serif' font-weight='bold'>A</text></svg>">
+<script>(function(){try{var h=new Date().getHours();var p=h>=7&&h<19?'day':'night';var s=localStorage.getItem('theme');if(s&&localStorage.getItem('themePhase')!==p){localStorage.removeItem('theme');localStorage.removeItem('themePhase');s=null;}var t=(s==='light'||s==='dark')?s:(p==='day'?'light':'dark');document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+<style>
+  :root{
+    --bg:#ffffff;
+    --fg:#1a1d23;
+    --dim:#616a76;
+    --accent:#2f7d52;
+    --line:#e6e5dd;
+    --field:#ffffff;
+    --field-line:#d4d3c9;
+    --warn:#a85d18;
+    --mono:"SF Mono",ui-monospace,"JetBrains Mono","Cascadia Code",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--mono);
+    font-size:15px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    padding:clamp(20px,5vw,48px);
+    min-height:100vh;
+  }
+  ::selection{background:var(--accent);color:var(--bg)}
+  a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--line);transition:border-color .15s,color .15s}
+  a:hover{color:var(--accent);border-color:var(--accent)}
+
+  .wrap{max-width:820px;margin:0 auto}
+  .back{color:var(--dim);font-size:13px;border:none}
+  .back:hover{color:var(--accent)}
+  .prompt{color:var(--dim)}
+  .prompt b{color:var(--accent);font-weight:400}
+
+  header{margin:18px 0 clamp(28px,5vh,44px)}
+  .brand{font-size:clamp(26px,6vw,42px);line-height:1.1;letter-spacing:-.5px;color:var(--fg);font-weight:600}
+  .brand .accent{color:var(--accent)}
+  .intro{margin-top:18px;color:var(--fg);max-width:62ch;border-left:2px solid var(--accent);padding-left:16px}
+  .intro .dim{color:var(--dim)}
+
+  .process{margin-top:30px;padding:22px clamp(16px,4vw,26px);border:1px dashed var(--line);border-radius:3px}
+  .process .label{margin-bottom:16px}
+  .process ol{list-style:none;counter-reset:step;display:grid;gap:2px}
+  .process li{counter-increment:step;padding-left:34px;position:relative;max-width:64ch}
+  .process li::before{content:counter(step);position:absolute;left:0;top:6px;width:22px;height:22px;border:1px solid var(--accent);color:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px}
+  .process summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:6px 0;color:var(--fg)}
+  .process summary::-webkit-details-marker{display:none}
+  .process summary b{font-weight:600}
+  .process summary::after{content:"+";margin-left:auto;color:var(--accent);font-size:16px;line-height:1;opacity:.5;transition:opacity .15s;flex:none}
+  .process summary:hover::after{opacity:1}
+  .process details[open] summary::after{content:"–"}
+  .process .d{padding:0 0 10px;color:var(--dim);max-width:60ch}
+
+  .label{color:var(--dim);font-size:12px;letter-spacing:2px;text-transform:uppercase}
+  .label::before{content:"// "}
+
+  form{margin-top:8px}
+  fieldset{border:none;border-top:1px solid var(--line);padding:clamp(26px,5vh,38px) 0}
+  legend{display:block;width:100%}
+  .leg-num{color:var(--accent)}
+  .leg-title{display:block;font-size:clamp(17px,3.4vw,21px);color:var(--fg);margin-top:6px;letter-spacing:-.3px}
+  .leg-note{display:block;color:var(--dim);font-size:13px;margin-top:6px;max-width:60ch}
+
+  .grid{display:grid;gap:20px 22px;margin-top:24px}
+  .grid.two{grid-template-columns:1fr 1fr}
+  @media(max-width:640px){.grid.two{grid-template-columns:1fr}}
+  .field{display:flex;flex-direction:column;gap:7px;min-width:0}
+  .field.full{grid-column:1/-1}
+  label.q{color:var(--fg);font-size:14px;line-height:1.5}
+  label.q .req{color:var(--accent);margin-left:3px}
+  .help{color:var(--dim);font-size:12.5px;line-height:1.5}
+
+  input,select,textarea{
+    font-family:var(--mono);font-size:15px;color:var(--fg);
+    background:var(--field);border:1px solid var(--field-line);border-radius:2px;
+    padding:11px 13px;width:100%;transition:border-color .15s,box-shadow .15s;
+  }
+  input::placeholder,textarea::placeholder{color:var(--dim);opacity:.7}
+  textarea{resize:vertical;min-height:84px;line-height:1.6}
+  select{appearance:none;-webkit-appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%236b7264' stroke-width='1.5'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 13px center;background-size:11px;padding-right:34px}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+  input:invalid:not(:placeholder-shown),select:invalid{border-color:var(--field-line)}
+  .field.err input,.field.err select,.field.err textarea{border-color:var(--warn);box-shadow:0 0 0 1px var(--warn)}
+  .field-err{color:var(--warn);font-size:12px;display:none}
+  .field.err .field-err{display:block}
+
+  /* checkbox / multi grids */
+  .checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:9px 14px;margin-top:2px}
+  .opt{display:flex;align-items:flex-start;gap:9px;padding:9px 11px;border:1px solid var(--field-line);background:var(--field);border-radius:2px;cursor:pointer;line-height:1.4;font-size:13.5px;transition:border-color .15s,background .15s}
+  .opt:hover{border-color:var(--dim)}
+  .opt input{width:auto;margin:0;flex:0 0 auto;accent-color:var(--accent);transform:translateY(2px)}
+  .opt:has(input:checked){border-color:var(--accent);background:rgba(47,125,82,.07)}
+
+  .actions{border-top:1px solid var(--line);padding-top:30px;margin-top:4px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+  .submit{font-family:var(--mono);font-size:15px;display:inline-flex;align-items:center;gap:10px;border:1px solid var(--accent);color:var(--accent);background:transparent;padding:14px 22px;border-radius:2px;cursor:pointer;transition:background .15s,color .15s}
+  .submit:hover{background:var(--accent);color:var(--bg)}
+  .submit:disabled{opacity:.55;cursor:default}
+  .form-note{color:var(--dim);font-size:12.5px;max-width:60ch}
+  #formError{color:var(--warn);font-size:13px;display:none}
+
+  /* confirmation */
+  #done{display:none;padding:clamp(26px,5vh,40px) 0}
+  #done.show{display:block}
+  #done .ok{color:var(--accent);font-size:clamp(20px,4vw,26px);letter-spacing:-.3px;margin:14px 0 16px}
+  #done p{color:var(--fg);max-width:62ch;margin-bottom:14px}
+  #done .dim{color:var(--dim);font-size:13px}
+
+  footer{border-top:1px solid var(--line);padding-top:26px;margin-top:40px;color:var(--dim);font-size:12.5px;display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:center}
+  footer nav{display:flex;gap:18px;flex-wrap:wrap}
+  footer nav a{color:var(--dim);border:none}
+  footer nav a:hover{color:var(--accent)}
+</style>
+<link rel="stylesheet" href="/assets/theme.css">
+<script src="/assets/theme.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+
+  <a class="back" href="/#realty">← arabuilds</a>
+
+  <header>
+    <h1 class="brand">Real Estate<span class="accent"> Intake</span></h1>
+    <p class="intro">This intake helps me understand where you're at, so I can help you with a plan.</p>
+
+    <div class="process">
+      <div class="label">how i work</div>
+      <ol>
+        <li><details>
+          <summary><b>Understand the business</b></summary>
+          <div class="d">Your focus, farm area, niche, production, proof, and where deals come from now.</div>
+        </details></li>
+        <li><details>
+          <summary><b>Find the weak link</b></summary>
+          <div class="d">Positioning, visibility, lead capture, follow-up, or the systems behind them.</div>
+        </details></li>
+        <li><details>
+          <summary><b>Build the plan</b></summary>
+          <div class="d">Website, home search, Google &amp; local search, reviews, a sold-listings showcase, lead capture and tracking.</div>
+        </details></li>
+        <li><details>
+          <summary><b>Launch and compound</b></summary>
+          <div class="d">Ship it, track what comes in, and keep widening the free leads so you lean less on paid.</div>
+        </details></li>
+      </ol>
+    </div>
+  </header>
+
+  <form id="intake" novalidate>
+    <!-- Submits to /api/intake (Cloudflare Pages Function -> D1 + Resend email alert).
+         If that endpoint is ever unreachable, the script falls back to a mailto so no lead is lost. -->
+    <input type="hidden" name="vertical" value="realty">
+    <input type="hidden" name="classification" id="classification">
+    <input type="hidden" name="classification_reasons" id="classification_reasons">
+    <!-- honeypot: bots fill this, humans never see it -->
+    <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+
+    <p class="form-note" style="margin-bottom:4px">Only the fields marked <span style="color:var(--accent)">*</span> are required. Everything else is optional, but the more you give me the better the plan.</p>
+
+    <!-- SECTION 1 -->
+    <fieldset>
+      <legend><span class="label leg-num">section 01</span><span class="leg-title">You and Your Brand</span></legend>
+      <div class="grid two">
+        <div class="field">
+          <label class="q" for="contact_name">Your name <span class="req" title="required">*</span></label>
+          <input id="contact_name" name="contact_name" type="text" required placeholder="Your name" autocomplete="name">
+          <span class="field-err">Please enter your name.</span>
+        </div>
+        <div class="field">
+          <label class="q" for="business_name">Brand or business name</label>
+          <span class="help">What you market under, if it's different from your name.</span>
+          <input id="business_name" name="business_name" type="text" placeholder="e.g. The East Bay Condo Group" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label class="q" for="phone">Phone number <span class="req" title="required">*</span></label>
+          <input id="phone" name="phone" type="tel" required placeholder="(510) 555-0123" autocomplete="tel" inputmode="tel">
+          <span class="field-err">Please enter a phone number.</span>
+        </div>
+        <div class="field">
+          <label class="q" for="email">Email <span class="req" title="required">*</span></label>
+          <input id="email" name="email" type="email" required placeholder="you@email.com" autocomplete="email" inputmode="email">
+          <span class="field-err">Please enter a valid email.</span>
+        </div>
+        <div class="field">
+          <label class="q" for="brokerage">Brokerage</label>
+          <input id="brokerage" name="brokerage" type="text" placeholder="Where you hold your license">
+        </div>
+        <div class="field">
+          <label class="q" for="dre_number">DRE / license number</label>
+          <input id="dre_number" name="dre_number" type="text" placeholder="e.g. DRE#02090399">
+        </div>
+        <div class="field">
+          <label class="q" for="website">Current website, if any</label>
+          <input id="website" name="website" type="url" placeholder="https://" inputmode="url">
+        </div>
+        <div class="field">
+          <label class="q" for="gbp">Google Business Profile link, if any</label>
+          <input id="gbp" name="gbp_link" type="url" placeholder="https://" inputmode="url">
+        </div>
+        <div class="field">
+          <label class="q" for="years_active">How long have you been in real estate?</label>
+          <select id="years_active" name="years_active">
+            <option value="" disabled selected>Select…</option>
+            <option>Just got licensed</option>
+            <option>Under 1 year</option>
+            <option>1–3 years</option>
+            <option>3–7 years</option>
+            <option>7–15 years</option>
+            <option>15+ years</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- SECTION 2 -->
+    <fieldset>
+      <legend><span class="label leg-num">section 02</span><span class="leg-title">Focus and Niche</span><span class="leg-note">This is the most important part. Specialists win listings and rank online. Generalists compete with everyone.</span></legend>
+      <div class="grid two">
+        <div class="field full">
+          <label class="q" for="main_trade">What's your primary focus? <span class="req" title="required">*</span></label>
+          <select id="main_trade" name="main_trade" required>
+            <option value="" disabled selected>Select your focus…</option>
+            <option>Listings / sellers (mostly)</option>
+            <option>Buyers (mostly)</option>
+            <option>Both buyers and sellers</option>
+            <option>Investors / multifamily</option>
+            <option>Property management</option>
+            <option>New construction</option>
+          </select>
+          <span class="field-err">Please select your primary focus.</span>
+        </div>
+      </div>
+      <div class="field full" style="margin-top:24px">
+        <label class="q">What kinds of property and clients do you work?</label>
+        <span class="help">Pick all that apply. Add anything I missed below.</span>
+        <div class="checks">
+          <label class="opt"><input type="checkbox" name="property_types" value="Single-family homes"><span>Single-family homes</span></label>
+          <label class="opt"><input type="checkbox" name="property_types" value="Condos / townhomes"><span>Condos / townhomes</span></label>
+          <label class="opt"><input type="checkbox" name="property_types" value="Luxury"><span>Luxury</span></label>
+          <label class="opt"><input type="checkbox" name="property_types" value="Multifamily / investment"><span>Multifamily / investment</span></label>
+          <label class="opt"><input type="checkbox" name="property_types" value="New construction"><span>New construction</span></label>
+          <label class="opt"><input type="checkbox" name="property_types" value="First-time buyers"><span>First-time buyers</span></label>
+          <label class="opt"><input type="checkbox" name="property_types" value="Move-up / families"><span>Move-up / families</span></label>
+          <label class="opt"><input type="checkbox" name="property_types" value="Downsizers / seniors"><span>Downsizers / seniors</span></label>
+          <label class="opt"><input type="checkbox" name="property_types" value="Relocation"><span>Relocation</span></label>
+          <label class="opt"><input type="checkbox" name="property_types" value="Land"><span>Land</span></label>
+          <label class="opt"><input type="checkbox" name="property_types" value="Commercial"><span>Commercial</span></label>
+          <label class="opt"><input type="checkbox" name="property_types" value="Rentals / leasing"><span>Rentals / leasing</span></label>
+        </div>
+      </div>
+      <div class="grid two">
+        <div class="field full" style="margin-top:4px">
+          <label class="q" for="niche">Do you have a specialty or niche?</label>
+          <span class="help">A building, neighborhood, property type, or kind of client you're known for, or want to be. Even a loose idea helps. This is where the real wins are. Example: condos in Emeryville, or first-time buyers in Concord.</span>
+          <textarea id="niche" name="niche" placeholder="What you'd want to be the obvious go-to for."></textarea>
+        </div>
+        <div class="field full">
+          <label class="q" for="want_more">What business do you want more of, and what do you want to steer away from?</label>
+          <textarea id="want_more" name="services_want_more"></textarea>
+        </div>
+        <div class="field">
+          <label class="q" for="price_band">Typical price range you work</label>
+          <select id="price_band" name="price_band">
+            <option value="" disabled selected>Select…</option>
+            <option>Under $400k</option>
+            <option>$400k–$700k</option>
+            <option>$700k–$1.2M</option>
+            <option>$1.2M–$2M</option>
+            <option>$2M–$5M</option>
+            <option>$5M+</option>
+            <option>All over the map</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="q" for="avg_sale_price">Your average sale price</label>
+          <select id="avg_sale_price" name="avg_sale_price">
+            <option value="" disabled selected>Select…</option>
+            <option>Under $400k</option>
+            <option>$400k–$700k</option>
+            <option>$700k–$1.2M</option>
+            <option>$1.2M–$2M</option>
+            <option>$2M+</option>
+            <option>Not sure</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- SECTION 3 -->
+    <fieldset>
+      <legend><span class="label leg-num">section 03</span><span class="leg-title">Markets and Farm Area</span></legend>
+      <div class="grid two">
+        <div class="field">
+          <label class="q" for="area_current">What cities or neighborhoods do you currently work? <span class="req" title="required">*</span></label>
+          <textarea id="area_current" name="area_current" required placeholder="e.g. Emeryville, Berkeley, North Oakland, Albany"></textarea>
+          <span class="field-err">Please list at least one area you work.</span>
+        </div>
+        <div class="field">
+          <label class="q" for="area_target">Where do you want more business? Your farm area, if you have one.</label>
+          <textarea id="area_target" name="area_target"></textarea>
+        </div>
+        <div class="field full">
+          <label class="q" for="area_exclude">Any areas you'd rather avoid?</label>
+          <span class="help">Helps me aim the targeting. Example: Auguste skips East Oakland.</span>
+          <input id="area_exclude" name="area_exclude" type="text" placeholder="Optional">
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- SECTION 4 -->
+    <fieldset>
+      <legend><span class="label leg-num">section 04</span><span class="leg-title">Stage and Production</span></legend>
+      <div class="grid two">
+        <div class="field full">
+          <label class="q" for="business_stage">Which best describes where you're at? <span class="req" title="required">*</span></label>
+          <select id="business_stage" name="business_stage" required>
+            <option value="" disabled selected>Select your stage…</option>
+            <option>Newly licensed, building my first clients</option>
+            <option>Licensed a while, deals are inconsistent</option>
+            <option>Steady production, want to level up</option>
+            <option>High producer, want to scale or build a team</option>
+            <option>I run a team</option>
+          </select>
+          <span class="field-err">Please select your stage.</span>
+        </div>
+        <div class="field">
+          <label class="q" for="deals_per_year">Roughly how many deals do you close a year?</label>
+          <select id="deals_per_year" name="deals_per_year">
+            <option value="" disabled selected>Select…</option>
+            <option>0–2</option>
+            <option>3–6</option>
+            <option>7–12</option>
+            <option>13–24</option>
+            <option>25–50</option>
+            <option>50+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="q" for="annual_volume">Roughly your annual sales volume?</label>
+          <select id="annual_volume" name="annual_volume">
+            <option value="" disabled selected>Select…</option>
+            <option>Under $1M</option>
+            <option>$1M–$5M</option>
+            <option>$5M–$15M</option>
+            <option>$15M–$40M</option>
+            <option>$40M–$100M</option>
+            <option>$100M+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="q" for="team">Solo or a team?</label>
+          <select id="team" name="team_size">
+            <option value="" disabled selected>Select…</option>
+            <option>Just me</option>
+            <option>Me + an assistant</option>
+            <option>Small team (2–5)</option>
+            <option>Larger team (6+)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="q" for="also_pm">Do you also do property management?</label>
+          <select id="also_pm" name="also_pm">
+            <option value="" disabled selected>Select…</option>
+            <option>Yes, and I want those leads too</option>
+            <option>Yes, but keep it separate</option>
+            <option>No</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- SECTION 5 -->
+    <fieldset>
+      <legend><span class="label leg-num">section 05</span><span class="leg-title">Where Business Comes From</span></legend>
+      <div class="field full" style="margin-top:24px">
+        <label class="q">Where do your deals come from today?</label>
+        <span class="help">Pick all that apply.</span>
+        <div class="checks">
+          <label class="opt"><input type="checkbox" name="lead_sources" value="Sphere / referrals"><span>Sphere / referrals</span></label>
+          <label class="opt"><input type="checkbox" name="lead_sources" value="Past clients"><span>Past clients</span></label>
+          <label class="opt"><input type="checkbox" name="lead_sources" value="Open houses"><span>Open houses</span></label>
+          <label class="opt"><input type="checkbox" name="lead_sources" value="Sign & listing calls"><span>Sign &amp; listing calls</span></label>
+          <label class="opt"><input type="checkbox" name="lead_sources" value="Zillow"><span>Zillow</span></label>
+          <label class="opt"><input type="checkbox" name="lead_sources" value="Realtor.com"><span>Realtor.com</span></label>
+          <label class="opt"><input type="checkbox" name="lead_sources" value="Google Local Service Ads"><span>Google Local Service Ads</span></label>
+          <label class="opt"><input type="checkbox" name="lead_sources" value="Google search (organic)"><span>Google search (organic)</span></label>
+          <label class="opt"><input type="checkbox" name="lead_sources" value="Paid ads (Google / Meta)"><span>Paid ads (Google / Meta)</span></label>
+          <label class="opt"><input type="checkbox" name="lead_sources" value="Social media"><span>Social media</span></label>
+          <label class="opt"><input type="checkbox" name="lead_sources" value="Brokerage-provided leads"><span>Brokerage-provided leads</span></label>
+          <label class="opt"><input type="checkbox" name="lead_sources" value="Farming / mailers"><span>Farming / mailers</span></label>
+          <label class="opt"><input type="checkbox" name="lead_sources" value="Floor / phone duty"><span>Floor / phone duty</span></label>
+          <label class="opt"><input type="checkbox" name="lead_sources" value="My website"><span>My website</span></label>
+          <label class="opt"><input type="checkbox" name="lead_sources" value="I don't have consistent leads"><span>I don't have consistent leads</span></label>
+          <label class="opt"><input type="checkbox" name="lead_sources" value="Other"><span>Other</span></label>
+        </div>
+      </div>
+      <div class="grid two">
+        <div class="field">
+          <label class="q" for="leads_per_month">Roughly how many new leads do you get per month?</label>
+          <select id="leads_per_month" name="leads_per_month">
+            <option value="" disabled selected>Select…</option>
+            <option>0–5</option>
+            <option>6–15</option>
+            <option>16–30</option>
+            <option>31–50</option>
+            <option>50+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="q" for="close_rate">What share of leads turn into clients?</label>
+          <select id="close_rate" name="close_rate">
+            <option value="" disabled selected>Select…</option>
+            <option>Not sure</option>
+            <option>Under 5%</option>
+            <option>5–15%</option>
+            <option>15–30%</option>
+            <option>Over 30%</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label class="q" for="cost_per_lead">If you buy leads, roughly what do you pay each?</label>
+          <select id="cost_per_lead" name="cost_per_lead">
+            <option value="" disabled selected>Select…</option>
+            <option>I don't buy leads</option>
+            <option>Under $25</option>
+            <option>$25–$75</option>
+            <option>$75–$150</option>
+            <option>$150+</option>
+            <option>Not sure</option>
+          </select>
+        </div>
+      </div>
+      <div class="field full" style="margin-top:20px">
+        <label class="q">Biggest issue with leads right now</label>
+        <div class="checks">
+          <label class="opt"><input type="checkbox" name="lead_issues" value="Not enough leads"><span>Not enough leads</span></label>
+          <label class="opt"><input type="checkbox" name="lead_issues" value="Too many low-quality leads"><span>Too many low-quality leads</span></label>
+          <label class="opt"><input type="checkbox" name="lead_issues" value="Leads go cold before I reach them"><span>Leads go cold before I reach them</span></label>
+          <label class="opt"><input type="checkbox" name="lead_issues" value="I don't follow up consistently"><span>I don't follow up consistently</span></label>
+          <label class="opt"><input type="checkbox" name="lead_issues" value="No system to track them"><span>No system to track them</span></label>
+          <label class="opt"><input type="checkbox" name="lead_issues" value="Too dependent on paid leads"><span>Too dependent on paid leads</span></label>
+          <label class="opt"><input type="checkbox" name="lead_issues" value="Too dependent on the brokerage"><span>Too dependent on the brokerage</span></label>
+          <label class="opt"><input type="checkbox" name="lead_issues" value="I get leads but don't convert enough"><span>I get leads but don't convert enough</span></label>
+          <label class="opt"><input type="checkbox" name="lead_issues" value="Other"><span>Other</span></label>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- SECTION 6 -->
+    <fieldset>
+      <legend><span class="label leg-num">section 06</span><span class="leg-title">Online Presence and Proof</span><span class="leg-note">For sellers deciding who to trust, proof you've done it before is the single biggest listing-winner.</span></legend>
+      <div class="grid two">
+        <div class="field">
+          <label class="q" for="has_website">Do you have a website?</label>
+          <select id="has_website" name="has_website">
+            <option value="" disabled selected>Select…</option>
+            <option>Yes</option>
+            <option>No</option>
+            <option>I have one but it needs work</option>
+            <option>Only a brokerage profile page</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="q" for="has_idx">Live home search (IDX) on your site?</label>
+          <span class="help">Real MLS listings people can search right on your site.</span>
+          <select id="has_idx" name="has_idx">
+            <option value="" disabled selected>Select…</option>
+            <option>Yes</option>
+            <option>No</option>
+            <option>Not sure what that is</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="q" for="has_gbp">Do you have a Google Business Profile?</label>
+          <select id="has_gbp" name="has_gbp">
+            <option value="" disabled selected>Select…</option>
+            <option>Yes</option>
+            <option>No</option>
+            <option>Not sure</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="q" for="reviews">How many online reviews do you have?</label>
+          <span class="help">Google, Zillow, anywhere.</span>
+          <select id="reviews" name="review_count">
+            <option value="" disabled selected>Select…</option>
+            <option>0</option>
+            <option>1–5</option>
+            <option>6–20</option>
+            <option>21–50</option>
+            <option>50+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="q" for="sold_count">Roughly how many homes have you sold?</label>
+          <select id="sold_count" name="sold_count">
+            <option value="" disabled selected>Select…</option>
+            <option>None yet</option>
+            <option>1–5</option>
+            <option>6–20</option>
+            <option>21–50</option>
+            <option>50–100</option>
+            <option>100+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="q" for="sold_showcase">Do you showcase your sold listings anywhere?</label>
+          <select id="sold_showcase" name="sold_showcase">
+            <option value="" disabled selected>Select…</option>
+            <option>Yes, on my site</option>
+            <option>Only on Zillow / portals</option>
+            <option>No, but I have the list</option>
+            <option>No</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="q" for="bio_photos">Do you have a bio and professional photos?</label>
+          <select id="bio_photos" name="bio_photos">
+            <option value="" disabled selected>Select…</option>
+            <option>Yes, both</option>
+            <option>Bio only</option>
+            <option>Photos only</option>
+            <option>Neither</option>
+          </select>
+        </div>
+      </div>
+      <div class="field full" style="margin-top:20px">
+        <label class="q">What proof do you already have that helps clients trust you?</label>
+        <div class="checks">
+          <label class="opt"><input type="checkbox" name="proof" value="Google reviews"><span>Google reviews</span></label>
+          <label class="opt"><input type="checkbox" name="proof" value="Client testimonials"><span>Client testimonials</span></label>
+          <label class="opt"><input type="checkbox" name="proof" value="List of sold homes"><span>List of sold homes</span></label>
+          <label class="opt"><input type="checkbox" name="proof" value="Production stats ($ volume)"><span>Production stats ($ volume)</span></label>
+          <label class="opt"><input type="checkbox" name="proof" value="Years of experience"><span>Years of experience</span></label>
+          <label class="opt"><input type="checkbox" name="proof" value="A clear niche / specialty"><span>A clear niche / specialty</span></label>
+          <label class="opt"><input type="checkbox" name="proof" value="Designations / certifications"><span>Designations / certifications</span></label>
+          <label class="opt"><input type="checkbox" name="proof" value="Press or awards"><span>Press or awards</span></label>
+          <label class="opt"><input type="checkbox" name="proof" value="Social following"><span>Social following</span></label>
+          <label class="opt"><input type="checkbox" name="proof" value="Video"><span>Video</span></label>
+          <label class="opt"><input type="checkbox" name="proof" value="None yet"><span>None yet</span></label>
+          <label class="opt"><input type="checkbox" name="proof" value="Other"><span>Other</span></label>
+        </div>
+      </div>
+      <div class="field full" style="margin-top:20px">
+        <label class="q" for="north_star">Any agent sites or brands whose look or setup you admire?</label>
+        <span class="help">Even one example tells me a lot about the feel you're after. Doesn't have to be real estate.</span>
+        <textarea id="north_star" name="design_north_star" placeholder="Links or names, however rough."></textarea>
+      </div>
+    </fieldset>
+
+    <!-- SECTION 7 -->
+    <fieldset>
+      <legend><span class="label leg-num">section 07</span><span class="leg-title">Tools and Follow-Up</span></legend>
+      <div class="grid two">
+        <div class="field">
+          <label class="q" for="crm">What CRM or lead tool do you use?</label>
+          <select id="crm" name="crm">
+            <option value="" disabled selected>Select…</option>
+            <option>Follow Up Boss</option>
+            <option>kvCORE / BoldTrail</option>
+            <option>LionDesk</option>
+            <option>Sierra Interactive</option>
+            <option>Chime</option>
+            <option>Brokerage CRM</option>
+            <option>Spreadsheet</option>
+            <option>Phone contacts only</option>
+            <option>None</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="q" for="followup">Do you follow up with leads and past clients consistently?</label>
+          <select id="followup" name="followup">
+            <option value="" disabled selected>Select…</option>
+            <option>Always, I have a system</option>
+            <option>Sometimes</option>
+            <option>Rarely</option>
+            <option>No</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="q" for="response">How quickly can you respond to a new lead?</label>
+          <select id="response" name="lead_response_time">
+            <option value="" disabled selected>Select…</option>
+            <option>Immediately</option>
+            <option>Same day</option>
+            <option>Within 24 hours</option>
+            <option>Within 2–3 days</option>
+            <option>I struggle to respond consistently</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="q" for="booking">How do people book time with you?</label>
+          <select id="booking" name="booking_method">
+            <option value="" disabled selected>Select…</option>
+            <option>Scheduling link (Calendly etc.)</option>
+            <option>They call or text</option>
+            <option>Email back-and-forth</option>
+            <option>No set way</option>
+          </select>
+        </div>
+      </div>
+      <div class="field full" style="margin-top:20px">
+        <label class="q">What slows you down the most?</label>
+        <div class="checks">
+          <label class="opt"><input type="checkbox" name="slowdowns" value="Following up with leads"><span>Following up with leads</span></label>
+          <label class="opt"><input type="checkbox" name="slowdowns" value="Staying in touch with past clients"><span>Staying in touch with past clients</span></label>
+          <label class="opt"><input type="checkbox" name="slowdowns" value="Marketing my listings"><span>Marketing my listings</span></label>
+          <label class="opt"><input type="checkbox" name="slowdowns" value="Creating content"><span>Creating content</span></label>
+          <label class="opt"><input type="checkbox" name="slowdowns" value="Getting reviews"><span>Getting reviews</span></label>
+          <label class="opt"><input type="checkbox" name="slowdowns" value="Transaction paperwork"><span>Transaction paperwork</span></label>
+          <label class="opt"><input type="checkbox" name="slowdowns" value="Staying top-of-mind in my farm"><span>Staying top-of-mind in my farm</span></label>
+          <label class="opt"><input type="checkbox" name="slowdowns" value="Knowing which leads are worth my time"><span>Knowing which leads are worth my time</span></label>
+          <label class="opt"><input type="checkbox" name="slowdowns" value="Other"><span>Other</span></label>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- SECTION 8 -->
+    <fieldset>
+      <legend><span class="label leg-num">section 08</span><span class="leg-title">Goals</span></legend>
+      <div class="grid two">
+        <div class="field">
+          <label class="q" for="goal">What's your main goal over the next 6–12 months? <span class="req" title="required">*</span></label>
+          <select id="goal" name="main_goal" required>
+            <option value="" disabled selected>Select your main goal…</option>
+            <option>Get my first steady clients</option>
+            <option>Win more listings / sellers</option>
+            <option>Get more buyers</option>
+            <option>Get better quality leads</option>
+            <option>Get found online / build my brand</option>
+            <option>Own my niche or farm area</option>
+            <option>Lean less on paid leads</option>
+            <option>Scale up or build a team</option>
+            <option>Get organized / reduce chaos</option>
+            <option>Other</option>
+          </select>
+          <span class="field-err">Please select your main goal.</span>
+        </div>
+        <div class="field">
+          <label class="q" for="target_production">What would a great next 12 months look like?</label>
+          <select id="target_production" name="target_production">
+            <option value="" disabled selected>Select…</option>
+            <option>A handful of solid deals</option>
+            <option>Double my current production</option>
+            <option>Consistent listings every month</option>
+            <option>$15M+ in volume</option>
+            <option>$40M+ in volume</option>
+            <option>Build a team that runs without me</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="q" for="success">What would make this project a win for you?</label>
+          <textarea id="success" name="success_definition"></textarea>
+        </div>
+        <div class="field">
+          <label class="q" for="worried">What are you most worried about?</label>
+          <textarea id="worried" name="worries"></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- SECTION 9 -->
+    <fieldset>
+      <legend><span class="label leg-num">section 09</span><span class="leg-title">My Scope</span></legend>
+      <div class="field full" style="margin-top:24px">
+        <label class="q">Which kinds of help are you most interested in?</label>
+        <div class="checks">
+          <label class="opt"><input type="checkbox" name="help_interest" value="Website"><span>Website</span></label>
+          <label class="opt"><input type="checkbox" name="help_interest" value="Live home search (IDX)"><span>Live home search (IDX)</span></label>
+          <label class="opt"><input type="checkbox" name="help_interest" value="SEO / local search"><span>SEO / local search</span></label>
+          <label class="opt"><input type="checkbox" name="help_interest" value="Google Business Profile"><span>Google Business Profile</span></label>
+          <label class="opt"><input type="checkbox" name="help_interest" value="Reviews system"><span>Reviews system</span></label>
+          <label class="opt"><input type="checkbox" name="help_interest" value="Recently-sold showcase"><span>Recently-sold showcase</span></label>
+          <label class="opt"><input type="checkbox" name="help_interest" value="Seller valuation tool"><span>Seller valuation tool</span></label>
+          <label class="opt"><input type="checkbox" name="help_interest" value="Buyer listing alerts"><span>Buyer listing alerts</span></label>
+          <label class="opt"><input type="checkbox" name="help_interest" value="Neighborhood / farm pages"><span>Neighborhood / farm pages</span></label>
+          <label class="opt"><input type="checkbox" name="help_interest" value="Listing landing pages"><span>Listing landing pages</span></label>
+          <label class="opt"><input type="checkbox" name="help_interest" value="Lead tracking / CRM"><span>Lead tracking / CRM</span></label>
+          <label class="opt"><input type="checkbox" name="help_interest" value="Social content"><span>Social content</span></label>
+          <label class="opt"><input type="checkbox" name="help_interest" value="Full monthly management"><span>Full monthly management</span></label>
+          <label class="opt"><input type="checkbox" name="help_interest" value="Not sure yet"><span>Not sure yet</span></label>
+        </div>
+      </div>
+      <div class="grid two">
+        <div class="field full">
+          <label class="q" for="involvement">How involved do you want me to be?</label>
+          <select id="involvement" name="involvement_level">
+            <option value="" disabled selected>Select…</option>
+            <option>One-time setup</option>
+            <option>Monthly marketing support</option>
+            <option>Monthly lead / business management</option>
+            <option>Full growth partner</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="q">Best way to reach you?</label>
+          <span class="help">However you actually like to talk.</span>
+          <div class="checks">
+            <label class="opt"><input type="checkbox" name="contact_pref" value="Call"><span>Call</span></label>
+            <label class="opt"><input type="checkbox" name="contact_pref" value="Text"><span>Text</span></label>
+            <label class="opt"><input type="checkbox" name="contact_pref" value="Email"><span>Email</span></label>
+            <label class="opt"><input type="checkbox" name="contact_pref" value="WhatsApp"><span>WhatsApp</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label class="q" for="share_pref">Easiest way to share photos and files?</label>
+          <select id="share_pref" name="share_pref">
+            <option value="" disabled selected>Select…</option>
+            <option>Text them to my phone</option>
+            <option>Email</option>
+            <option>Google Drive / Dropbox</option>
+            <option>Not sure — you tell me</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label class="q" for="anything">Anything else I should know before we talk?</label>
+          <textarea id="anything" name="anything_else"></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit" class="submit" id="submitBtn">Submit intake →</button>
+      <p id="formError"></p>
+      <p class="form-note">I use this only to follow up about your business. See the <a href="/privacy.html">privacy policy</a>.</p>
+    </div>
+  </form>
+
+  <div id="done" aria-live="polite">
+    <div class="prompt">ara@builds:~$ <b>intake --status</b></div>
+    <p class="ok">✓ Intake received.</p>
+    <p>Thanks, your intake's in. I'll read through your focus, farm area, production, and where leads come from now, then follow up with where I'd start.</p>
+    <p class="dim">Want to talk sooner? Call <a href="tel:+15106942210">(510) 694-2210</a> or email <a href="mailto:azbaghda@gmail.com">azbaghda@gmail.com</a>.</p>
+    <p class="dim" style="margin-top:18px"><a class="back" href="/#realty">← back to arabuilds</a></p>
+  </div>
+
+  <footer>
+    <span>© <span id="yr">2026</span> arabuilds. All rights reserved.</span>
+    <nav>
+      <a href="/#realty">Home</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </nav>
+  </footer>
+
+</main>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const form = document.getElementById('intake');
+  const submitBtn = document.getElementById('submitBtn');
+  const formError = document.getElementById('formError');
+  const RECIPIENT = 'azbaghda@gmail.com';
+
+  // --- field label map (for the readable email/mailto fallback summary) ---
+  const LABELS = {
+    business_name:'Brand / business', contact_name:'Name', phone:'Phone', email:'Email',
+    brokerage:'Brokerage', dre_number:'DRE / license', website:'Website', gbp_link:'Google Business Profile',
+    years_active:'Years in real estate', main_trade:'Primary focus', property_types:'Property / client types',
+    niche:'Specialty / niche', services_want_more:'Wants more of / steer away from',
+    price_band:'Typical price range', avg_sale_price:'Average sale price',
+    area_current:'Areas currently worked', area_target:'Target / farm area', area_exclude:'Areas to avoid',
+    business_stage:'Career stage', deals_per_year:'Deals / year', annual_volume:'Annual volume',
+    team_size:'Team', also_pm:'Property management', lead_sources:'Lead sources',
+    leads_per_month:'Leads / month', close_rate:'Lead-to-client rate', cost_per_lead:'Cost per lead',
+    lead_issues:'Lead issues', has_website:'Has website', has_idx:'Has live home search (IDX)',
+    has_gbp:'Has GBP', review_count:'Review count', sold_count:'Homes sold',
+    sold_showcase:'Sold showcase', bio_photos:'Bio + photos', proof:'Trust proof',
+    design_north_star:'Look / sites admired', crm:'CRM / lead tool', followup:'Follow-up consistency',
+    lead_response_time:'Lead response time', booking_method:'How people book', slowdowns:'Slowdowns',
+    main_goal:'Main goal', target_production:'Target next 12 months', success_definition:'Success looks like',
+    worries:'Worries', help_interest:'Help interested in', involvement_level:'Involvement level',
+    contact_pref:'Preferred contact', share_pref:'File sharing', anything_else:'Anything else',
+    classification:'CLASSIFICATION', classification_reasons:'Classification reasons'
+  };
+
+  // --- collect form data into a flat object (arrays joined for multi-select) ---
+  function collect(){
+    const data = {};
+    const fd = new FormData(form);
+    for (const key of new Set([...fd.keys()])){
+      if (key === 'botcheck' || key === 'access_key' || key === 'subject' || key === 'from_name') continue;
+      const all = fd.getAll(key).filter(v => v !== '');
+      if (all.length) data[key] = all.length > 1 ? all : all[0];
+    }
+    return data;
+  }
+
+  // --- internal classification (Foundation / Growth / Operator / Not Ready) ---
+  function classify(d){
+    const s = {foundation:0, growth:0, operator:0, notready:0};
+    const reasons = [];
+    const stage = d.business_stage || '';
+    const sources = [].concat(d.lead_sources || []);
+    const issues  = [].concat(d.lead_issues || []);
+    const slow    = [].concat(d.slowdowns || []);
+    const proof   = [].concat(d.proof || []);
+
+    // Stage
+    if (/Newly licensed/.test(stage)){ s.foundation += 2; reasons.push('newly licensed'); }
+    if (stage === 'Licensed a while, deals are inconsistent'){ s.growth += 2; reasons.push('inconsistent deals'); }
+    if (stage === 'Steady production, want to level up'){ s.growth += 1; s.operator += 1; reasons.push('steady, wants to level up'); }
+    if (stage === 'High producer, want to scale or build a team'){ s.operator += 2; reasons.push('high producer, wants to scale'); }
+    if (stage === 'I run a team'){ s.operator += 3; reasons.push('runs a team'); }
+
+    // Legitimacy / presence -> foundation
+    if (d.has_website === 'No' || d.has_website === 'Only a brokerage profile page'){ s.foundation += 1; reasons.push('no real website'); }
+    if (d.has_gbp === 'No' || d.has_gbp === 'Not sure'){ s.foundation += 1; reasons.push('no/uncertain Google profile'); }
+    if (d.review_count === '0'){ s.foundation += 1; reasons.push('no reviews'); }
+    if (['None yet','1–5'].includes(d.sold_count)){ s.foundation += 1; reasons.push('few/no closed homes'); }
+    if (d.bio_photos === 'Neither'){ s.foundation += 1; reasons.push('no bio/photos'); }
+    if (proof.includes('None yet')){ s.foundation += 1; reasons.push('no proof yet'); }
+
+    // Established signals -> growth
+    if (['21–50','50–100','100+'].includes(d.sold_count)){ s.growth += 1; reasons.push('solid sold history'); }
+    if (['6–20','21–50','50+'].includes(d.review_count)){ s.growth += 1; }
+    if (proof.includes('List of sold homes') || d.sold_showcase === 'No, but I have the list'){ s.growth += 1; reasons.push('has sold list to leverage'); }
+    if (issues.includes('Not enough leads')){ s.growth += 1; reasons.push('needs more leads'); }
+    if (issues.includes('Too dependent on paid leads') || issues.includes('Too dependent on the brokerage')){ s.growth += 1; reasons.push('wants to own its leadflow'); }
+    if (d.has_idx === 'No' || d.has_idx === 'Not sure what that is'){ s.growth += 1; reasons.push('no live home search'); }
+
+    // Conversion / ops -> operator
+    if (['Rarely','No'].includes(d.followup)){ s.operator += 1; reasons.push('weak follow-up'); }
+    if (['Spreadsheet','Phone contacts only','None'].includes(d.crm)){ s.operator += 1; reasons.push('no real CRM'); }
+    if (issues.includes("I get leads but don't convert enough")){ s.operator += 2; reasons.push('low conversion'); }
+    if (issues.includes('Leads go cold before I reach them')){ s.operator += 2; reasons.push('leads going cold'); }
+    if (issues.includes("I don't follow up consistently")){ s.operator += 2; reasons.push('inconsistent follow-up'); }
+    if (issues.includes('No system to track them')){ s.operator += 1; reasons.push('no tracking system'); }
+    if (slow.some(x => ['Following up with leads','Staying in touch with past clients','Knowing which leads are worth my time'].includes(x))){ s.operator += 1; }
+
+    // Not ready / needs basics
+    if (d.lead_response_time === 'I struggle to respond consistently'){ s.notready += 2; reasons.push('cannot respond to leads consistently'); }
+    const wantsCheapOnly = (d.main_goal === 'Get more buyers' || d.main_goal === 'Get better quality leads')
+      && proof.includes('None yet') && ['None yet','1–5'].includes(d.sold_count) && d.bio_photos === 'Neither';
+    if (wantsCheapOnly){ s.notready += 1; reasons.push('wants leads without building proof'); }
+
+    // Decide. Not-ready is a gate when dominant and the business isn't established.
+    let label;
+    const established = ['21–50','50–100','100+'].includes(d.sold_count) || ['6–20','21–50','50+'].includes(d.review_count);
+    if (s.notready >= 2 && !established && s.operator < 3){
+      label = 'Not Ready / Needs Basics';
+    } else {
+      const entries = [['Foundation Client', s.foundation], ['Growth Client', s.growth], ['Operator Client', s.operator]];
+      entries.sort((a,b) => b[1] - a[1]);
+      label = entries[0][1] === 0 ? 'Foundation Client' : entries[0][0];
+    }
+    return { label, reasons, scores: s };
+  }
+
+  // --- build a readable plain-text summary (used for email body / mailto fallback) ---
+  function summarize(data, cls){
+    const lines = [];
+    lines.push('REAL ESTATE GROWTH INTAKE — arabuilds');
+    lines.push('Internal classification: ' + cls.label);
+    if (cls.reasons.length) lines.push('Signals: ' + cls.reasons.join('; '));
+    lines.push('Submitted: ' + new Date().toLocaleString());
+    lines.push('');
+    for (const key in LABELS){
+      if (key === 'classification' || key === 'classification_reasons') continue;
+      if (data[key] == null) continue;
+      const val = Array.isArray(data[key]) ? data[key].join(', ') : data[key];
+      lines.push(LABELS[key] + ': ' + val);
+    }
+    return lines.join('\n');
+  }
+
+  // --- inline validation for required fields ---
+  function validate(){
+    let firstBad = null;
+    form.querySelectorAll('[required]').forEach(el => {
+      const field = el.closest('.field');
+      const ok = el.checkValidity() && el.value.trim() !== '';
+      field.classList.toggle('err', !ok);
+      if (!ok && !firstBad) firstBad = el;
+    });
+    return firstBad;
+  }
+  form.querySelectorAll('[required]').forEach(el => {
+    el.addEventListener('input', () => el.closest('.field').classList.remove('err'));
+    el.addEventListener('change', () => el.closest('.field').classList.remove('err'));
+  });
+
+  function showConfirmation(){
+    form.style.display = 'none';
+    document.getElementById('done').classList.add('show');
+    document.getElementById('done').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formError.style.display = 'none';
+
+    const bad = validate();
+    if (bad){
+      formError.textContent = 'Please fill in the required fields highlighted above.';
+      formError.style.display = 'block';
+      bad.focus();
+      bad.closest('.field').scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+
+    const data = collect();
+    const cls = classify(data);
+    document.getElementById('classification').value = cls.label;
+    document.getElementById('classification_reasons').value = cls.reasons.join('; ');
+    data.classification = cls.label;
+    data.classification_reasons = cls.reasons.join('; ');
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting…';
+
+    // Primary path: post to our own endpoint (stores in D1 + emails an alert).
+    try {
+      const res = await fetch('/api/intake', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const out = await res.json().catch(() => ({ success: res.ok }));
+      if (res.ok && out.success){ showConfirmation(); return; }
+      throw new Error(out.message || 'Submission failed');
+    } catch (err){
+      // Last-resort fallback so a lead is never lost if the API is unreachable.
+      const subject = 'Real Estate Growth Intake — ' + (data.business_name || data.contact_name || 'agent');
+      const body = summarize(data, cls);
+      const mailto = 'mailto:' + RECIPIENT + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      window.location.href = mailto;
+      setTimeout(showConfirmation, 600);
+    }
+  });
+</script>
+</body>
+</html>

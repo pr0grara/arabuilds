@@ -231,6 +231,15 @@ function plan() {
   </section>
 
   <section>
+    <span class="label">how we work together</span>
+    <h2>You don't pay to build it. I take a cut of what it sells.</h2>
+    <p>Quick on the money, since it matters. <strong>Nothing up front.</strong> I build the site, the buy button, the local search, all of it, and I only earn once it's actually moving cider for you: bottles sold and orders that came through the site. We can see which ones did, so my cut's always tied to real sales, not some flat bill.</p>
+    <p><strong>The rest stays all yours.</strong> Taproom pours, your regulars, wholesale you'd have done anyway: none of my business, literally. I only share in the new stuff the site brings in.</p>
+    <p>And you can <strong>buy me out whenever</strong> and own the whole thing outright. No lock-in.</p>
+    <div class="callout"><b>Short version:</b> I only make money when the site makes you money, and you can buy it out anytime.</div>
+  </section>
+
+  <section>
     <div class="firstmove">
       <span class="label">start here</span>
       <p style="font-size:17px">If you're ready <b style="color:var(--accent)">let me know</b> and drop a few things into our shared folder:</p>

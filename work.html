@@ -12,7 +12,7 @@
 <meta property="og:description" content="Real sites built for local trade businesses, made to get found and book jobs.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='%231b2a47'/><text x='50' y='73' font-size='66' text-anchor='middle' fill='%232f7d52' font-family='Arial,sans-serif' font-weight='bold'>A</text></svg>">
-<script>(function(){try{var t=localStorage.getItem('theme')==='light'?'light':'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+<script>(function(){try{var h=new Date().getHours();var p=h>=7&&h<19?'day':'night';var s=localStorage.getItem('theme');if(s&&localStorage.getItem('themePhase')!==p){localStorage.removeItem('theme');localStorage.removeItem('themePhase');s=null;}var t=(s==='light'||s==='dark')?s:(p==='day'?'light':'dark');document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 <style>
   :root{
     --bg:#ffffff;--fg:#1a1d23;--dim:#616a76;--accent:#2f7d52;--line:#e6e5dd;
@@ -38,24 +38,21 @@
   header{margin:18px 0 clamp(28px,5vh,44px)}
   .brand{font-size:clamp(26px,6vw,42px);line-height:1.1;letter-spacing:-.5px;color:var(--fg);font-weight:600}
   .brand .accent{color:var(--accent)}
-  .tag{margin-top:18px;color:var(--dim);max-width:58ch}
+  .tag{margin-top:18px;color:var(--dim);max-width:62ch}
   .tag .fg{color:var(--fg)}
 
-  .work{display:grid;gap:clamp(30px,6vw,50px)}
-  .site{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--panel);transition:border-color .18s,transform .18s}
+  .note{margin-top:20px;border:1px solid var(--line);border-left:2px solid var(--accent);border-radius:4px;background:var(--chrome);padding:16px clamp(16px,3vw,20px);color:var(--dim);max-width:64ch}
+  .note b{color:var(--fg);font-weight:400}
+
+  .work{display:grid;gap:clamp(14px,2.5vw,18px);margin-top:clamp(28px,5vh,40px)}
+  .site{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border:1px solid var(--line);border-radius:5px;background:var(--panel);padding:16px clamp(16px,3.5vw,22px);transition:border-color .18s,transform .18s}
   .site:hover{border-color:var(--accent);transform:translateY(-2px)}
-  .chrome{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--chrome)}
-  .dots{display:flex;gap:6px;flex:0 0 auto}
-  .dots i{width:10px;height:10px;border-radius:50%;background:var(--field-line);display:block}
-  .addr{flex:1;min-width:0;color:var(--dim);font-size:12.5px;background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:4px 11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .addr::before{content:"› ";color:var(--accent)}
-  .shot-link{display:block;border:none}
-  .shot{display:block;width:100%;aspect-ratio:1000/625;object-fit:cover;object-position:top;background:var(--field)}
-  .site .body{padding:20px clamp(16px,3.5vw,24px) 24px}
-  .site h2{font-size:clamp(18px,3.6vw,22px);letter-spacing:-.3px;color:var(--fg);font-weight:600}
-  .site .meta{color:var(--accent);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin:8px 0 12px}
-  .site p{color:var(--dim);max-width:60ch;margin-bottom:16px}
-  .visit{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--accent);color:var(--accent);padding:9px 15px;border-radius:2px;font-size:13.5px}
+  .site .head{flex:1;min-width:240px}
+  .site h2{font-size:clamp(16px,3.2vw,19px);letter-spacing:-.3px;color:var(--fg);font-weight:600}
+  .site .addr{color:var(--dim);font-size:12px;margin-top:3px}
+  .site .addr::before{content:"› ";color:var(--accent)}
+  .site p{color:var(--dim);max-width:62ch;margin:8px 0 0;flex-basis:100%;font-size:14px}
+  .visit{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--accent);color:var(--accent);padding:7px 13px;border-radius:2px;font-size:13px}
   .visit:hover{background:var(--accent);color:var(--bg);border-color:var(--accent)}
 
   .closer{border-top:1px solid var(--line);padding:clamp(26px,5vh,40px) 0 0;margin-top:clamp(34px,6vw,52px)}
@@ -81,73 +78,46 @@
   <header>
     <!-- <div class="prompt">ara@builds:~$ <b>ls ./work</b></div> -->
     <h1 class="brand">Selected<span class="accent"> Work</span></h1>
-    <p class="tag">A few local service businesses I've put online. Every build runs the <span class="fg">same playbook</span>: fast site, clear offer, easy to contact, all pointed at getting found and turning visitors into booked jobs.</p>
+    <p class="tag">A few local service businesses I've put online. Every build runs the <span class="fg">same playbook</span>: loads fast, says the offer up front, dead easy to contact.</p>
+    <p class="note">One thing worth saying before you click: these are <b>unbranded and plain on purpose</b>. Depending on the trade, that's what converts. Someone searching garage door repair at 9pm isn't after a glossy brand, they want a local who'll pick up, and a page that looks like the contractor threw it together himself often books more jobs than a polished one. The rough is tuned to the trade.<br><br>Under that plain surface is the part that actually matters: <b>SEO built to get found</b>, a service-area page for every town you cover. <b>Content written for your business</b>, not a cookie-cutter template with your name swapped in. <b>Genuinely useful info</b> a customer wants to read, not filler. And it's all <b>structured so AI search and crawlers can read it</b>, so you show up when people ask an assistant who to call.</p>
   </header>
 
   <div class="work">
 
     <article class="site">
-      <div class="chrome">
-        <span class="dots"><i></i><i></i><i></i></span>
-        <span class="addr">konapestpros.com</span>
-      </div>
-      <a class="shot-link" href="https://konapestpros.com" target="_blank" rel="noopener">
-        <img class="shot" src="/assets/work/kona-pest-pros.jpg" alt="Kona Pest Pros website homepage" loading="lazy" width="1000" height="625">
-      </a>
-      <div class="body">
-        <h2>Kona Pest Pros</h2>
-        <div class="meta">Pest control · West Hawaii</div>
-        <p>Friendly, local pest control on the Big Island: ants, little fire ants, cockroaches, coqui frogs, and termites. Built to rank locally and drive free-estimate calls.</p>
-        <a class="visit" href="https://konapestpros.com" target="_blank" rel="noopener">Visit site →</a>
-      </div>
-    </article>
-
-    <article class="site">
-      <div class="chrome">
-        <span class="dots"><i></i><i></i><i></i></span>
-        <span class="addr">eastbaygaragedoorrepair.com</span>
-      </div>
-      <a class="shot-link" href="https://eastbaygaragedoorrepair.com" target="_blank" rel="noopener">
-        <img class="shot" src="/assets/work/east-bay-garage-door.jpg" alt="East Bay Garage Door Repair website homepage" loading="lazy" width="1000" height="625">
-      </a>
-      <div class="body">
+      <div class="head">
         <h2>East Bay Garage Door Repair</h2>
-        <div class="meta">Garage doors · East Bay, CA</div>
-        <p>Same-day garage door repair and installation across the East Bay. Quote form above the fold, upfront pricing, and trust signals built to convert urgent searches into calls.</p>
-        <a class="visit" href="https://eastbaygaragedoorrepair.com" target="_blank" rel="noopener">Visit site →</a>
+        <div class="addr">eastbaygaragedoorrepair.com · Garage doors, East Bay CA</div>
       </div>
+      <a class="visit" href="https://eastbaygaragedoorrepair.com" target="_blank" rel="noopener">Visit →</a>
+      <p>Same-day garage door repair across the East Bay. Quote form up top, upfront pricing, built to turn urgent searches into calls.</p>
     </article>
 
     <article class="site">
-      <div class="chrome">
-        <span class="dots"><i></i><i></i><i></i></span>
-        <span class="addr">pinestatewellandpump.com</span>
+      <div class="head">
+        <h2>Kona Pest Pros</h2>
+        <div class="addr">konapestpros.com · Pest control, West Hawaii</div>
       </div>
-      <a class="shot-link" href="https://pinestatewellandpump.com" target="_blank" rel="noopener">
-        <img class="shot" src="/assets/work/pine-state-well-pump.jpg" alt="Pine State Well & Pump website homepage" loading="lazy" width="1000" height="625">
-      </a>
-      <div class="body">
+      <a class="visit" href="https://konapestpros.com" target="_blank" rel="noopener">Visit →</a>
+      <p>Local pest control on the Big Island: ants, fire ants, roaches, coqui, termites. This one's a test: built in an older circa 2000s style to see whether that dated look still out-converts a modern one for this trade.</p>
+    </article>
+
+    <article class="site">
+      <div class="head">
         <h2>Pine State Well &amp; Pump</h2>
-        <div class="meta">Well &amp; pump · Central Maine</div>
-        <p>Fast, honest well and pump repair in Central Maine: submersible &amp; jet pumps, pressure tanks, water testing, and frozen-line thawing. Built around up-front pricing and quick contact.</p>
-        <a class="visit" href="https://pinestatewellandpump.com" target="_blank" rel="noopener">Visit site →</a>
+        <div class="addr">pinestatewellandpump.com · Well &amp; pump, Central Maine</div>
       </div>
+      <a class="visit" href="https://pinestatewellandpump.com" target="_blank" rel="noopener">Visit →</a>
+      <p>Honest well and pump repair in Central Maine. Up-front pricing, quick contact.</p>
     </article>
 
     <article class="site">
-      <div class="chrome">
-        <span class="dots"><i></i><i></i><i></i></span>
-        <span class="addr">mobileautoglassvegas.com</span>
-      </div>
-      <a class="shot-link" href="https://mobileautoglassvegas.com" target="_blank" rel="noopener">
-        <img class="shot" src="/assets/work/vegas-mobile-auto-glass.jpg" alt="Vegas Mobile Auto Glass website homepage" loading="lazy" width="1000" height="625">
-      </a>
-      <div class="body">
+      <div class="head">
         <h2>Vegas Mobile Auto Glass</h2>
-        <div class="meta">Auto glass · Las Vegas, NV</div>
-        <p>Mobile windshield replacement, chip repair, and power window repair that comes to the customer. Built around a fast quote form and a click-to-call number for on-the-go searches.</p>
-        <a class="visit" href="https://mobileautoglassvegas.com" target="_blank" rel="noopener">Visit site →</a>
+        <div class="addr">mobileautoglassvegas.com · Auto glass, Las Vegas NV</div>
       </div>
+      <a class="visit" href="https://mobileautoglassvegas.com" target="_blank" rel="noopener">Visit →</a>
+      <p>Mobile windshield replacement and chip repair that comes to the customer. Fast quote form, click-to-call for on-the-go searches.</p>
     </article>
 
   </div>

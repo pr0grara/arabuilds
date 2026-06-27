@@ -1,6 +1,6 @@
 // GET /admin — Basic-Auth protected dashboard of intake submissions.
 // Supports ?class=<classification> filter, ?q=<search>, and ?format=csv export.
-import { LABELS, norm, escapeHtml } from './_lib.js';
+import { labelsFor, norm, escapeHtml } from './_lib.js';
 
 const CLASSES = ['Foundation Client', 'Growth Client', 'Operator Client', 'Not Ready / Needs Basics'];
 
@@ -75,12 +75,18 @@ function fmtDate(iso) {
 function detailsHtml(dataJson) {
   let data;
   try { data = JSON.parse(dataJson); } catch { return escapeHtml(dataJson || ''); }
+  const labels = labelsFor(data.vertical);
   const parts = [];
-  for (const key in LABELS) {
+  for (const key in labels) {
     if (data[key] == null || data[key] === '') continue;
-    parts.push(`<div class="dt">${escapeHtml(LABELS[key])}</div><div class="dd">${escapeHtml(norm(data[key]))}</div>`);
+    parts.push(`<div class="dt">${escapeHtml(labels[key])}</div><div class="dd">${escapeHtml(norm(data[key]))}</div>`);
   }
   return `<div class="detail">${parts.join('')}</div>`;
+}
+
+// Read the submission's vertical without throwing, for the row badge.
+function verticalOf(dataJson) {
+  try { return JSON.parse(dataJson).vertical || ''; } catch { return ''; }
 }
 
 function renderPage(rows, counts, state) {
@@ -103,7 +109,7 @@ function renderPage(rows, counts, state) {
       <tr class="head" onclick="this.closest('tbody').classList.toggle('open')">
         <td class="when">${escapeHtml(fmtDate(r.created_at))}</td>
         <td><span class="tag ${cl}">${escapeHtml(tag)}</span></td>
-        <td>${escapeHtml(r.business_name || '—')}<div class="sub">${escapeHtml(r.contact_name || '')}</div></td>
+        <td>${escapeHtml(r.business_name || r.contact_name || '—')}<div class="sub">${verticalOf(r.data) === 'realty' ? '🏠 realty' : '🔧 trades'}${r.business_name ? ' · ' + escapeHtml(r.contact_name || '') : ''}</div></td>
         <td>${escapeHtml(r.main_trade || '—')}</td>
         <td>${escapeHtml(r.area_current || '—')}</td>
         <td class="contact"><a href="tel:${escapeHtml(r.phone || '')}" onclick="event.stopPropagation()">${escapeHtml(r.phone || '')}</a><div class="sub"><a href="mailto:${escapeHtml(r.email || '')}" onclick="event.stopPropagation()">${escapeHtml(r.email || '')}</a></div></td>
